@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Membres;
 use App\Repository\MembresRepository;
 use App\Repository\RankRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +23,17 @@ final class MembresController extends AbstractController
         return $this->render('membres/index.html.twig', [
             'controller_name' => 'MembresController',
             'membres' => $membres,
+            'ranks' => $ranks,
+        ]);
+    }
+    #[Route('/membre/add', name: 'app_membre_add')]
+    public function add(MembresRepository $membresRepository, RankRepository $rankRepository): Response
+    {
+        $ranks = $rankRepository->getAll();
+        $membre = new Membres();
+        return $this->render('membres/add.html.twig', [
+            'controller_name' => 'MembresController',
+            'membre' => $membre,
             'ranks' => $ranks,
         ]);
     }

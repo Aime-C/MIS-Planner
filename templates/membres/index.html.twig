@@ -8,7 +8,11 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
     <h1 class="text-3xl font-bold text-white text-center mb-6 mt-10">Liste des membres</h1>
-    <div class="flex items-center justify-center mt-10">
+    <a href="membre/add"
+       class="ml-25 py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
+        Ajouter un membre
+    </a>
+    <div class="flex items-center justify-center mt-5">
         <div class="overflow-x-auto rounded-lg shadow-lg">
             <table class="w-[90vw] min-w-full border border-gray-600 text-white" style="background-color: #242970;">
                 <thead>
@@ -27,27 +31,33 @@
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.pseudo|e }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.nom|e }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.joinDate|date("m/d/Y") }}</td>
+                    {% set rank_found = false %}
+
                     {% for rank in ranks %}
                         {% if membre.rankid == rank.hierachie %}
                             <td class="px-6 py-4 border-r border-gray-600">{{ rank.libelle|e }}</td>
+                            {% set rank_found = true %}
                         {% endif %}
                     {% endfor %}
-{#                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.rankid|e }}</td>#}
+
+                    {% if not rank_found %}
+                        <td class="px-6 py-4 border-r border-gray-600">Unranked</td>
+                    {% endif %}
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.isActif|e }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">
                         <div class="flex gap-2 flex-wrap">
-                            <button type="button"
-                                    class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700">
+                            <a href="/membre/{{ membre.id|e }}"
+                               class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700">
                                 Détails
-                            </button>
-                            <button type="button"
-                                    class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
+                            </a>
+                            <a href="/membre/del/{{ membre.id|e }}"
+                               class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
                                 Expulser
-                            </button>
-                            <button type="button"
-                                    class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
+                            </a>
+                            <a href="/membre/edit/{{ membre.id|e }}"
+                               class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
                                 Modifier
-                            </button>
+                            </a>
                         </div>
                     </td>
                 </tr>

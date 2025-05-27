@@ -12,15 +12,17 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $ranks = [
-            ['id' => 1, 'libelle' => 'Amiral',        'hierarchie' => 1],
-            ['id' => 2, 'libelle' => 'Commandant',    'hierarchie' => 2],
-            ['id' => 3, 'libelle' => 'Capitaine',     'hierarchie' => 3],
-            ['id' => 4, 'libelle' => 'Lieutenant',    'hierarchie' => 4],
-            ['id' => 5, 'libelle' => 'Sergent',       'hierarchie' => 5],
-            ['id' => 6, 'libelle' => '1ère Classe',   'hierarchie' => 6],
-            ['id' => 7, 'libelle' => '2ème Classe',   'hierarchie' => 7],
-            ['id' => 8, 'libelle' => '3ème Classe',   'hierarchie' => 8],
-            ['id' => 9, 'libelle' => 'Cadet',         'hierarchie' => 9],
+            ['id' => 1,  'libelle' => 'Amiral',        'hierarchie' => 1],
+            ['id' => 2,  'libelle' => 'Vice-Amiral',   'hierarchie' => 2],
+            ['id' => 3,  'libelle' => 'Commandant',    'hierarchie' => 3],
+            ['id' => 4,  'libelle' => 'Capitaine',     'hierarchie' => 4],
+            ['id' => 5,  'libelle' => 'Lieutenant',    'hierarchie' => 5],
+            ['id' => 6,  'libelle' => 'Sergent',       'hierarchie' => 6],
+            ['id' => 7,  'libelle' => 'Caporal',       'hierarchie' => 7],
+            ['id' => 8,  'libelle' => '1ère Classe',   'hierarchie' => 8],
+            ['id' => 9,  'libelle' => '2nd Classe',    'hierarchie' => 9],
+            ['id' => 10, 'libelle' => '3ème Classe',   'hierarchie' => 10],
+            ['id' => 11, 'libelle' => 'Cadet',         'hierarchie' => 11],
         ];
 
         foreach ($ranks as $data) {
@@ -36,6 +38,7 @@ class AppFixtures extends Fixture
         $testMember->setNom("Grabriel");
         $testMember->setJoinDate(new \DateTime());
         $testMember->setRankId(1);
+        $testMember->setIsActif(1);
         $manager->persist($testMember);
 
         $manager->flush();
