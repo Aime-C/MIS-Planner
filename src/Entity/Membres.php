@@ -25,6 +25,9 @@ class Membres
     #[ORM\Column]
     private ?\DateTime $joinDate = null;
 
+    #[ORM\Column(options: ["default" => 1])]
+    private ?int $isActif = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -78,10 +81,21 @@ class Membres
         return $this->joinDate;
     }
 
+
     public function setJoinDate(\DateTime $joinDate): static
     {
         $this->joinDate = $joinDate;
 
         return $this;
+    }
+
+    public function getIsActif(): ?int
+    {
+        return $this->isActif;
+    }
+
+    public function setIsActif(?int $isActif): void
+    {
+        $this->isActif = $isActif;
     }
 }

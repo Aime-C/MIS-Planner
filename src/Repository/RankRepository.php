@@ -31,13 +31,21 @@ class RankRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Rank
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        public function findOneById($value): ?Rank
+        {
+            return $this->createQueryBuilder('r')
+                ->andWhere('r.id = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getOneOrNullResult()
+            ;
+        }
+
+    public function getAll(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.id', 'ASC') // Tri optionnel
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -7,14 +7,53 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/wamp64/www/MIS-Planner/src/Controller/MembresController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/MIS-Planner/templates/membres/index.html.twig</code></li>
-    </ul>
-</div>
+    <h1 class="text-3xl font-bold text-white text-center mb-6 mt-10">Liste des membres</h1>
+    <div class="flex items-center justify-center mt-10">
+        <div class="overflow-x-auto rounded-lg shadow-lg">
+            <table class="w-[90vw] min-w-full border border-gray-600 text-white" style="background-color: #242970;">
+                <thead>
+                <tr class="text-left border-b border-gray-600">
+                    <th class="px-6 py-3 border-r border-gray-600">Pseudo</th>
+                    <th class="px-6 py-3 border-r border-gray-600">Nom</th>
+                    <th class="px-6 py-3 border-r border-gray-600">Date d'arrivé</th>
+                    <th class="px-6 py-3 border-r border-gray-600">Rang</th>
+                    <th class="px-6 py-3 border-r border-gray-600">Actif</th>
+                    <th class="px-6 py-3">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for membre in membres %}
+                <tr class="border-b border-gray-600" style="background-color: #2c3190;">
+                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.pseudo|e }}</td>
+                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.nom|e }}</td>
+                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.joinDate|date("m/d/Y") }}</td>
+                    {% for rank in ranks %}
+                        {% if membre.rankid == rank.hierachie %}
+                            <td class="px-6 py-4 border-r border-gray-600">{{ rank.libelle|e }}</td>
+                        {% endif %}
+                    {% endfor %}
+{#                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.rankid|e }}</td>#}
+                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.isActif|e }}</td>
+                    <td class="px-6 py-4 border-r border-gray-600">
+                        <div class="flex gap-2 flex-wrap">
+                            <button type="button"
+                                    class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700">
+                                Détails
+                            </button>
+                            <button type="button"
+                                    class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
+                                Expulser
+                            </button>
+                            <button type="button"
+                                    class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
+                                Modifier
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
