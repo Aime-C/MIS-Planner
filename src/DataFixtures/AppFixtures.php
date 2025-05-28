@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Marques;
 use App\Entity\Membres;
 use App\Entity\Rank;
 use App\Entity\Vaisseaux;
@@ -57,10 +58,33 @@ class AppFixtures extends Fixture
         $nomad->setIsReleased(true);
         $manager->persist($nomad);
 
-        $vaisseauMembre = new VaisseauxMembres();
-        $vaisseauMembre->setMembreId(1);
-        $vaisseauMembre->setVaisseauId(1);
-        $manager->persist($vaisseauMembre);
+        $idrisk = new Vaisseaux();
+        $idrisk->setNom("Idris-K");
+        $idrisk->setMarque(2);
+        $idrisk->setRealeaseDate(new \DateTime());
+        $idrisk->setSCU(995);
+        $idrisk->setHeight(46);
+        $idrisk->setWidth(126);
+        $idrisk->setLength(233);
+        $idrisk->setSizeCategory(4);
+        $idrisk->setType(1);
+        $idrisk->setIsReleased(true);
+        $manager->persist($idrisk);
+
+        $CNOU = new Marques();
+        $CNOU->setIdMarque(1);
+        $CNOU->setNom("Consolidated Outland");
+        $manager->persist($CNOU);
+
+        $aegis = new Marques();
+        $aegis->setIdMarque(2);
+        $aegis->setNom("Aegis");
+        $manager->persist($aegis);
+
+//        $vaisseauMembre = new VaisseauxMembres();
+//        $vaisseauMembre->setMembreId(1);
+//        $vaisseauMembre->setVaisseauId(1);
+//        $manager->persist($vaisseauMembre);
         $manager->flush();
     }
 }

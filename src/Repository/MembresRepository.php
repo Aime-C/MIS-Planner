@@ -32,7 +32,7 @@ class MembresRepository extends ServiceEntityRepository
     public function getAll(): array
     {
         return $this->createQueryBuilder('m')
-            ->orderBy('m.id', 'ASC') // Tri optionnel
+            ->orderBy('m.rank_id', 'ASC') // Tri optionnel
             ->getQuery()
             ->getResult();
     }
