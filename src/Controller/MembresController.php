@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Membres;
+use App\Form\MembreTypeForm;
 use App\Repository\MembresRepository;
 use App\Repository\RankRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -27,14 +30,23 @@ final class MembresController extends AbstractController
         ]);
     }
     #[Route('/membre/add', name: 'app_membre_add')]
-    public function add(MembresRepository $membresRepository, RankRepository $rankRepository): Response
+    public function new(Request $request, EntityManagerInterface $em): Response
     {
-        $ranks = $rankRepository->getAll();
         $membre = new Membres();
+
+        $form = $this->createForm(MembreTypeForm::class, $membre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $membre->setIsActif(true);
+            $em->persist($membre);
+            $em->flush();
+
+            return $this->redirectToRoute('app_membres');
+        }
+
         return $this->render('membres/add.html.twig', [
-            'controller_name' => 'MembresController',
-            'membre' => $membre,
-            'ranks' => $ranks,
+            'form' => $form->createView(),
         ]);
     }
 }
