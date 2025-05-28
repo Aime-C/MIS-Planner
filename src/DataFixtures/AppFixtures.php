@@ -4,6 +4,8 @@ namespace App\DataFixtures;
 
 use App\Entity\Membres;
 use App\Entity\Rank;
+use App\Entity\Vaisseaux;
+use App\Entity\VaisseauxMembres;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -34,6 +36,7 @@ class AppFixtures extends Fixture
         }
 
         $testMember = new Membres();
+        $testMember->setId(1);
         $testMember->setPseudo("Grabibi");
         $testMember->setNom("Grabriel");
         $testMember->setJoinDate(new \DateTime());
@@ -41,6 +44,23 @@ class AppFixtures extends Fixture
         $testMember->setIsActif(1);
         $manager->persist($testMember);
 
+        $nomad = new Vaisseaux();
+        $nomad->setNom("Nomad");
+        $nomad->setMarque(1);
+        $nomad->setRealeaseDate(new \DateTime());
+        $nomad->setSCU(24);
+        $nomad->setHeight(24);
+        $nomad->setWidth(24);
+        $nomad->setLength(24);
+        $nomad->setSizeCategory(1);
+        $nomad->setType(1);
+        $nomad->setIsReleased(true);
+        $manager->persist($nomad);
+
+        $vaisseauMembre = new VaisseauxMembres();
+        $vaisseauMembre->setMembreId(1);
+        $vaisseauMembre->setVaisseauId(1);
+        $manager->persist($vaisseauMembre);
         $manager->flush();
     }
 }
