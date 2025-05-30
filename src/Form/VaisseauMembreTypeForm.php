@@ -24,7 +24,7 @@ class VaisseauMembreTypeForm extends AbstractType
     {
 
         $membres = $this->em->getRepository(Membres::class)->findAll();
-        $vaisseaux = $this->em->getRepository(Vaisseaux::class)->findAll();
+        $vaisseaux = $this->em->getRepository(Vaisseaux::class)->findBy([], ['nom' => 'ASC']);
 
         $choicesMembres = [];
         $choicesvaisseaux = [];

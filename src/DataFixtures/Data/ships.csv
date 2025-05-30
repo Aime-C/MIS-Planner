@@ -1,0 +1,74 @@
+nom,realeaseDate,sizeCategory,marque,isReleased,height,width,length,SCU,type,image
+Nomad,2021-04-03,1,9,1,6.5,16.0,26.0,24,3,nomad.jpg
+Pioneer,2020-04-16,4,9,0,33.4,18.5,48.3,327,10,pioneer.jpg
+
+Idris-M,2022-02-06,4,3,1,11.1,15.3,101.7,557,7,idris-m.jpg
+Idris-K,2022-02-06,4,3,1,11.1,15.3,101.7,557,7,idris-m.jpg
+Idris-P,2022-02-06,4,3,1,11.1,15.3,101.7,557,7,idris-m.jpg
+Idris-T,2022-02-06,4,3,1,11.1,15.3,101.7,557,7,idris-m.jpg
+Avenger Titan,2019-07-12,1,3,1,5.5,10.0,22.5,8,1,avenger_titan.jpg
+Eclipse,2019-09-09,1,3,1,3.5,11.0,23.0,0,10,eclipse.jpg
+Reclaimer,2023-01-09,4,3,1,50.0,55.0,158.0,600,5,reclaimer.jpg
+Hammerhead,2022-05-11,4,3,1,18.0,38.0,115.0,0,1,hammerhead.jpg
+Gladius,2019-02-09,1,3,1,3.0,9.0,20.0,0,1,gladius.jpg
+Redeemer,2022-12-01,3,3,1,12.0,20.0,38.0,50,1,redeemer.jpg
+Retaliator,2025-07-24,3,3,0,41.9,47.8,105.1,571,6,retaliator.jpg
+
+Cutlass Black,2020-05-14,2,1,1,10.0,14.0,29.0,46,1,cutlass_black.jpg
+Caterpillar,2021-10-22,4,1,1,18.0,30.0,111.0,576,2,caterpillar.jpg
+Cutlass Red,2020-07-19,2,1,1,10.5,14.0,29.0,34,9,cutlass_red.jpg
+Herald,2020-04-07,1,1,1,4.0,8.0,19.0,2,8,herald.jpg
+Kraken,2022-01-21,4,1,1,25.4,6.1,104.8,41,3,kraken.jpg
+Vulture,2025-08-09,1,1,1,48.6,42.0,120.4,42,3,vulture.jpg
+Corsair,2018-12-11,4,1,0,37.9,49.4,36.2,423,8,corsair.jpg
+
+Mole,2022-08-15,3,12,1,14.0,28.0,38.0,288,4,mole.jpg
+
+Constellation Andromeda,2021-11-01,3,2,1,18.5,28.2,61.0,134,3,constellation_andromeda.jpg
+Apollo Medivac,2023-03-09,4,2,1,33.8,52.2,25.0,366,7,apollo_medivac.jpg
+Apollo Triage,2025-03-24,4,2,0,36.7,48.8,104.6,4,3,apollo_triage.jpg
+Aurora MR,2019-03-20,1,2,1,4.0,8.0,18.0,6,3,aurora_mr.jpg
+Arrastra,2024-12-02,3,2,1,6.0,28.4,126.7,59,10,arrastra.jpg
+Polaris,2018-11-19,4,2,1,18.5,51.2,144.9,245,1,polaris.jpg
+Orion,2023-04-29,4,2,1,19.9,24.7,114.0,528,1,orion.jpg
+Scorpius,2022-05-04,1,2,1,37.3,22.1,115.6,272,2,scorpius.jpg
+Scorpius Antares,2018-04-30,1,2,1,46.8,43.2,57.6,52,2,scorpius_antares.jpg
+Perseus,2024-04-25,3,2,0,44.4,32.6,88.3,105,5,perseus.jpg
+
+85X,2019-06-06,1,4,1,2.5,7.5,12.0,0,6,85x.jpg
+
+Ares Inferno,2021-09-28,4,8,0,35.9,49.6,116.1,423,3,ares_inferno.jpg
+Ares Ion,2021-09-03,1,8,0,30.8,46.1,13.3,550,2,ares_ion.jpg
+Spirit C1,2024-02-15,2,8,0,8.0,14.0,30.0,64,2,spirit_c1.jpg
+Mercury Star Runner,2021-06-21,3,8,1,9.0,20.0,35.0,114,2,msr.jpg
+Genesis Starliner,2018-10-02,2,8,0,30.7,50.7,21.1,448,10,genesis_starliner.jpg
+
+Arrow, 2020-11-11, 1, 7, 1, 3.0, 8.0, 16.0, 0, 1, arrow.jpg
+Carrack, 2022-02-18, 4, 7, 1, 30.0, 42.0, 126.5, 456, 3, carrack.jpg
+Valkyrie, 2021-08-03, 3, 7, 1, 17.5, 35.0, 38.0, 30, 2, valkyrie.jpg
+Terrapin, 2021-02-14, 2, 7, 1, 6.0, 10.0, 19.0, 8, 3, terrapin.jpg
+Pisces C8, 2022-04-25, 1, 7, 1, 2.8, 6.5, 13.5, 4, 3, pisces_c8.jpg
+Legionnaire, 2019-12-12, 2, 7, 0, 36.7, 12.0, 158.8, 473, 8, legionnaire.jpg
+F8C Lightning, 2024-01-31, 1, 7, 0, 30.5, 16.7, 136.0, 79, 2, f8c_lightning.jpg
+Liberator, 2019-04-04, 2, 7, 0, 44.0, 15.0, 90.0, 261, 7, liberator.jpg
+Gladiator, 2021-06-16, 4, 7, 0, 24.1, 32.3, 128.1, 233, 7, gladiator.jpg
+
+Prospector, 2020-10-10, 2, 5, 1, 7.0, 15.0, 24.0, 128, 4, prospector.jpg
+Razor, 2019-11-30, 1, 5, 1, 3.0, 7.0, 10.0, 0, 6, razor.jpg
+Freelancer MAX, 2020-12-05, 3, 5, 1, 10.0, 20.0, 38.0, 120, 2, freelancer_max.jpg
+Hull C, 2024-09-14, 1, 5, 0, 33.0, 42.5, 43.5, 357, 4, hull_c.jpg
+Hull D, 2025-10-20, 3, 5, 1, 25.9, 35.6, 83.7, 497, 6, hull_d.jpg
+Hull E, 2021-08-18, 4, 5, 0, 40.9, 9.1, 95.6, 586, 1, hull_e.jpg
+Hull A, 2023-05-05, 3, 5, 1, 12.0, 18.0, 39.0, 64, 2, hull_a.jpg
+Hull B, 2024-01-20, 4, 5, 0, 18.0, 26.0, 68.0, 384, 2, hull_b.jpg
+Reliant Kore, 2020-01-15, 2, 5, 1, 5.0, 14.0, 28.0, 30, 2, reliant_kore.jpg
+Endeavor, 2018-08-14, 4, 5, 0, 15.3, 41.2, 57.6, 395, 2, endeavor.jpg
+Odyssey, 2024-11-26, 4, 5, 0, 11.1, 26.2, 140.6, 51, 8, odyssey.jpg
+Expanse, 2022-01-21, 4, 5, 0, 27.4, 35.4, 111.6, 51, 9, expanse.jpg
+
+San'tok.yāi,2023-03-03,2,11,0,6.0,13.0,23.0,0,1,santokyai.jpg
+
+Prowler,2021-01-17,2,13,1,9.5,12.0,24.0,0,7,prowler.jpg
+
+Banu Defender,2021-07-28,2,6,1,7.5,15.0,28.0,16,1,banu_defender.jpg
+Merchantman,2024-07-16,4,6,1,42.1,40.2,25.5,356,1,merchantman.jpg

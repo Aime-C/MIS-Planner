@@ -8,6 +8,7 @@ use App\Form\MembreTypeForm;
 use App\Form\VaisseauMembreTypeForm;
 use App\Repository\MarquesRepository;
 use App\Repository\MembresRepository;
+use App\Repository\SizeRepository;
 use App\Repository\VaisseauxMembresRepository;
 use App\Repository\VaisseauxRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,12 +20,17 @@ use Symfony\Component\Routing\Attribute\Route;
 final class FlotteController extends AbstractController
 {
     #[Route('/flotte', name: 'app_flotte')]
-    public function index(VaisseauxMembresRepository $vaisseauxMembresRepository, MembresRepository $membresRepository, VaisseauxRepository $vaisseauxRepository, MarquesRepository $marquesRepository): Response
+    public function index(VaisseauxMembresRepository $vaisseauxMembresRepository,
+                          MembresRepository $membresRepository,
+                          VaisseauxRepository $vaisseauxRepository,
+                          MarquesRepository $marquesRepository,
+                          SizeRepository $sizeRepository): Response
     {
         $vaisseauxMembres = $vaisseauxMembresRepository->findAll();
         $membres = $membresRepository->findAll();
         $vaisseaux = $vaisseauxRepository->findAll();
         $marques = $marquesRepository->findAll();
+        $size = $sizeRepository->findAll();
 
         $mapped = [];
 
@@ -64,6 +70,7 @@ final class FlotteController extends AbstractController
                     'membre' => $membre,
                     'vaisseau' => $vaisseau,
                     'marque' => $marqueVaisseau,
+                    'sizes' => $size,
                 ];
             }
         }
