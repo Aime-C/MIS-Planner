@@ -37,6 +37,24 @@ class MembresRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getAllActif(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.rank_id', 'ASC')
+            ->andWhere('m.isActif = 1')// Tri optionnel
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getAllInactif(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.rank_id', 'ASC')
+            ->andWhere('m.isActif = 0')// Tri optionnel
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findOneByPseudo($value): ?Membres
     {
         return $this->createQueryBuilder('m')

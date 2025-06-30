@@ -46,15 +46,15 @@
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.isActif|e }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">
                         <div class="flex gap-2 flex-wrap">
-                            <a href="/membre/{{ membre.id|e }}"
+                            <a href="membre/{{ membre.id|e }}"
                                class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700">
                                 Détails
                             </a>
-                            <a href="/membre/del/{{ membre.id|e }}"
+                            <a href="membre/del/{{ membre.id|e }}"
                                class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
                                 Expulser
                             </a>
-                            <a href="/membre/edit/{{ membre.id|e }}"
+                            <a href="membre/edit/{{ membre.id|e }}"
                                class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
                                 Modifier
                             </a>

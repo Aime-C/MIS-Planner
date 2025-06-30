@@ -17,7 +17,7 @@ final class MembresController extends AbstractController
     #[Route('/membres', name: 'app_membres')]
     public function index(MembresRepository $membresRepository, RankRepository $rankRepository): Response
     {
-        $membres = $membresRepository->getAll();
+        $membres = $membresRepository->getAllActif();
         $ranks = [];
         foreach ($membres as $membre) {
             $ranks = $rankRepository->getAll();
@@ -48,5 +48,38 @@ final class MembresController extends AbstractController
         return $this->render('membres/add.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/membre/edit/{id}', name: 'app_membre_edit')]
+    public function edit(Request $request, EntityManagerInterface $em, int $id, MembresRepository $membresRepository): Response
+    {
+        $membre = $membresRepository->findOneById($id);
+
+        $form = $this->createForm(MembreTypeForm::class, $membre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($membre);
+            $em->flush();
+
+            return $this->redirectToRoute('app_membres');
+        }
+
+        return $this->render('membres/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/membre/del/{id}', name: 'app_membre_del')]
+    public function expulser(Request $request, EntityManagerInterface $em, int $id, MembresRepository $membresRepository): Response
+    {
+        $membre = $membresRepository->findOneById($id);
+        $membre->setIsActif(false);
+
+        $em->persist($membre);
+        $em->flush();
+
+        return $this->redirectToRoute('app_membres');
+
     }
 }
