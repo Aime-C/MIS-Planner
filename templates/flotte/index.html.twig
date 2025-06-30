@@ -27,12 +27,25 @@
                     <p class="text-sm text-gray-300">Taille : Non définie</p>
                 {% endif %}
 
-                <p class="text-sm text-gray-300">Type : {{ assignation.vaisseau.type }}</p>
+                <p class="text-sm text-gray-300">Type : {{ assignation.type.libelle }}</p>
                 {% if assignation.vaisseau.isReleased == 1 %}
                     <p class="text-sm text-gray-300">Disponible</p>
                 {% else %}
                     <p class="text-sm text-gray-300">Non Sorti</p>
                 {% endif %}
+                <div class="mb-4">
+                    <img src="{{ assignation.vaisseau.image }}" width="300" alt="{{ assignation.vaisseau.nom }}" class="block mb-2" />
+                    <div class="flex justify-between">
+                        <a href="flotte/edit/{{ assignation.id }}"
+                           class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
+                            Modifier
+                        </a>
+                        <a href="flotte/del/{{ assignation.id }}"
+                           class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
+                            Supprimer
+                        </a>
+                    </div>
+                </div>
             </div>
         {% endfor %}
     </div>

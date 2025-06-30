@@ -9,6 +9,7 @@ use App\Form\VaisseauMembreTypeForm;
 use App\Repository\MarquesRepository;
 use App\Repository\MembresRepository;
 use App\Repository\SizeRepository;
+use App\Repository\TypeRepository;
 use App\Repository\VaisseauxMembresRepository;
 use App\Repository\VaisseauxRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,13 +25,15 @@ final class FlotteController extends AbstractController
                           MembresRepository $membresRepository,
                           VaisseauxRepository $vaisseauxRepository,
                           MarquesRepository $marquesRepository,
-                          SizeRepository $sizeRepository): Response
+                          SizeRepository $sizeRepository,
+                          TypeRepository $typeRepository): Response
     {
         $vaisseauxMembres = $vaisseauxMembresRepository->findAll();
         $membres = $membresRepository->findAll();
         $vaisseaux = $vaisseauxRepository->findAll();
         $marques = $marquesRepository->findAll();
         $size = $sizeRepository->findAll();
+        $types = $typeRepository->findAll();
 
         $mapped = [];
 
@@ -38,6 +41,7 @@ final class FlotteController extends AbstractController
             $membre = null;
             $vaisseau = null;
             $marqueVaisseau = null;
+            $typeVaisseau = null;
 
             // Trouver le membre correspondant
             foreach ($membres as $m) {
@@ -65,12 +69,22 @@ final class FlotteController extends AbstractController
                 }
             }
 
-            if ($membre && $vaisseau && $marqueVaisseau) {
+            // Trouver le type correspondant
+            foreach ($types as $type) {
+                if ($type->getTypeId() === $vaisseau->getType()) {
+                    $typeVaisseau = $type;
+                    break;
+                }
+            }
+
+            if ($membre && $vaisseau && $marqueVaisseau && $typeVaisseau) {
                 $mapped[] = [
                     'membre' => $membre,
                     'vaisseau' => $vaisseau,
                     'marque' => $marqueVaisseau,
                     'sizes' => $size,
+                    'type' => $typeVaisseau,
+                    'id' => $vm->getId()
                 ];
             }
         }
@@ -101,5 +115,38 @@ final class FlotteController extends AbstractController
         return $this->render('flotte/add.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/flotte/edit/{id}', name: 'app_flotte_edit')]
+    public function edit(Request $request, EntityManagerInterface $em, int $id): Response
+    {
+        $vaisseauMembre = $em->getRepository(VaisseauxMembres::class)->find($id);
+
+        $form = $this->createForm(VaisseauMembreTypeForm::class, $vaisseauMembre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $vaisseauMembre->setNom("");
+            $em->persist($vaisseauMembre);
+            $em->flush();
+
+            return $this->redirectToRoute('app_flotte');
+        }
+
+        return $this->render('flotte/add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/flotte/del/{id}', name: 'app_flotte_del')]
+    public function delete(Request $request, EntityManagerInterface $em, int $id): Response
+    {
+        $vaisseauMembre = $em->getRepository(VaisseauxMembres::class)->find($id);
+
+        $em->remove($vaisseauMembre);
+        $em->flush();
+
+        return $this->redirectToRoute('app_flotte');
+
     }
 }

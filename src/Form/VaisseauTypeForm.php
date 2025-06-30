@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Marques;
 use App\Entity\Membres;
 use App\Entity\Size;
+use App\Entity\Type;
 use App\Entity\Vaisseaux;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
@@ -33,11 +34,16 @@ class VaisseauTypeForm extends AbstractType
         foreach ($sizes as $size) {
             $choicessizes[$size->getLibelle()] = $size->getSizeId();
         }
+        $types = $this->em->getRepository(Type::class)->findAll();
+        $choicestypes = [];
+        foreach ($types as $type) {
+            $choicestypes[$type->getLibelle()] = $type->getTypeId();
+        }
 
         $builder
             ->add('nom')
             ->add('realeaseDate')
-            ->add('sizeCategory')
+//            ->add('sizeCategory')
             ->add('sizeCategory',ChoiceType::class, [
                 'choices' => $choicessizes,
                 'label' => 'Taille',
@@ -53,7 +59,11 @@ class VaisseauTypeForm extends AbstractType
             ->add('width')
             ->add('length')
             ->add('SCU')
-            ->add('type')
+            ->add('type',ChoiceType::class, [
+                'choices' => $choicestypes,
+                'label' => 'Type',
+                'placeholder' => 'Sélectionnez un type',
+            ])
 //            ->add('image')
         ;
     }

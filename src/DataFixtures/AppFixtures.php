@@ -6,8 +6,10 @@ use App\Entity\Marques;
 use App\Entity\Membres;
 use App\Entity\Rank;
 use App\Entity\Size;
+use App\Entity\Type;
 use App\Entity\Vaisseaux;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\ObjectManager;
 use League\Csv\Reader;
 
@@ -45,6 +47,14 @@ class AppFixtures extends Fixture
         $testMember->setRankId(1); // à améliorer si Rank devient une relation
         $testMember->setIsActif(true);
         $manager->persist($testMember);
+
+        $testMember2 = new Membres();
+        $testMember2->setPseudo("Cuiler");
+        $testMember2->setNom("Alex");
+        $testMember2->setJoinDate(new \DateTime());
+        $testMember2->setRankId(5); // à améliorer si Rank devient une relation
+        $testMember2->setIsActif(true);
+        $manager->persist($testMember2);
 
         $sizeSmall = new Size();
         $sizeSmall->setSizeId(1);
@@ -105,6 +115,42 @@ class AppFixtures extends Fixture
 
             $manager->persist($vaisseau);
         }
+
+        $type = new Type();
+        $type->setLibelle("Cargo");
+        $type->setTypeId(1);
+        $manager->persist($type);
+
+        $type2 = new Type();
+        $type2->setLibelle("Minage");
+        $type2->setTypeId(2);
+        $manager->persist($type2);
+
+        $type3 = new Type();
+        $type3->setLibelle("Salvage");
+        $type3->setTypeId(3);
+        $manager->persist($type3);
+
+        $type4 = new Type();
+        $type4->setLibelle("Construction");
+        $type4->setTypeId(4);
+        $manager->persist($type4);
+
+        $type5 = new Type();
+        $type5->setLibelle("Light fighter");
+        $type5->setTypeId(5);
+        $manager->persist($type5);
+
+        $type6 = new Type();
+        $type6->setLibelle("Medium fighter");
+        $type6->setTypeId(6);
+        $manager->persist($type6);
+
+        $type7 = new Type();
+        $type7->setLibelle("Heavy fighter");
+        $type7->setTypeId(7);
+        $manager->persist($type7);
+
 
         // Finalisation
         $manager->flush();

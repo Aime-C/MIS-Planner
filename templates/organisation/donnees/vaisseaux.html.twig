@@ -8,7 +8,7 @@
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
     <h1 class="text-3xl font-bold text-white text-center mb-6 mt-10">Liste des vaisseaux</h1>
-    <a href="donnees/add"
+    <a href="vaisseaux/add"
        class="ml-25 py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
         Ajouter un vaisseau
     </a>
@@ -53,7 +53,16 @@
                         {% if not size_found %}
                             <td class="px-6 py-4 border-r border-gray-600">Non Défini</td>
                         {% endif %}
-                        <td class="px-6 py-4 border-r border-gray-600">{{ vaisseau.type|e }}</td>
+                        {% set type_found = false %}
+                        {% for type in types %}
+                            {% if vaisseau.type == type.typeId %}
+                                <td class="px-6 py-4 border-r border-gray-600">{{type.libelle|e }}</td>
+                                {% set type_found = true %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if not type_found %}
+                            <td class="px-6 py-4 border-r border-gray-600">Non Défini</td>
+                        {% endif %}
                         <td class="px-6 py-4 border-r border-gray-600">{{ vaisseau.realeaseDate|date("m/d/Y") }}</td>
                         <td class="px-6 py-4 border-r border-gray-600">{{ vaisseau.length|e }}</td>
                         <td class="px-6 py-4 border-r border-gray-600">{{ vaisseau.height|e }}</td>
@@ -66,7 +75,7 @@
                                    class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700">
                                     Détails
                                 </a>
-                                <a href="/organisation/edit/{{ vaisseau.id|e }}"
+                                <a href="vaisseaux/edit/{{ vaisseau.id|e }}"
                                    class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
                                     Modifier
                                 </a>
