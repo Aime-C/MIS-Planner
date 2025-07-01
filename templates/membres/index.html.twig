@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('membres') }}
+{% endblock %}
+
 {% block title %}Liste des Membres{% endblock %}
 
 {% block body %}
@@ -21,7 +26,7 @@
                     <th class="px-6 py-3 border-r border-gray-600">Nom</th>
                     <th class="px-6 py-3 border-r border-gray-600">Date d'arrivé</th>
                     <th class="px-6 py-3 border-r border-gray-600">Rang</th>
-                    <th class="px-6 py-3 border-r border-gray-600">Actif</th>
+{#                    <th class="px-6 py-3 border-r border-gray-600">Actif</th>#}
                     <th class="px-6 py-3">Action</th>
                 </tr>
                 </thead>
@@ -43,15 +48,16 @@
                     {% if not rank_found %}
                         <td class="px-6 py-4 border-r border-gray-600">Unranked</td>
                     {% endif %}
-                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.isActif|e }}</td>
+{#                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.isActif|e }}</td>#}
                     <td class="px-6 py-4 border-r border-gray-600">
                         <div class="flex gap-2 flex-wrap">
                             <a href="membre/{{ membre.id|e }}"
                                class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700">
                                 Détails
                             </a>
-                            <a href="membre/del/{{ membre.id|e }}"
-                               class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
+{#                            <a id="idbtndeletemembre" href="membre/del/{{ membre.id|e }}"#}
+                            <a href="#" data-idmembre="{{ membre.id|e }}"
+                               class="idbtndeletemembre py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
                                 Expulser
                             </a>
                             <a href="membre/edit/{{ membre.id|e }}"
@@ -59,6 +65,7 @@
                                 Modifier
                             </a>
                         </div>
+                        <input id="idMembreHidden" value="{{ membre.id|e }}" type="hidden">
                     </td>
                 </tr>
                 {% endfor %}
@@ -66,4 +73,17 @@
             </table>
         </div>
     </div>
+
+    <div id="confirmModalExpulsion" class="fixed inset-0 flex items-center justify-center bg-black/30 z-50 hidden">
+        <div class="bg-white rounded-lg p-6 shadow-xl max-w-md w-full">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Confirmer l'expulsion</h2>
+            <p class="mb-6 text-gray-600">Voulez-vous vraiment expulser ce membre ?</p>
+            <p class="mb-6 text-gray-600">Ses vaisseaux seront supprimés automatiquement de la flotte</p>
+            <div class="flex justify-between space-x-4">
+                <button id="confirmYes" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Oui</button>
+                <button id="confirmNo" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Non</button>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+

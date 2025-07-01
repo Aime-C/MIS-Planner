@@ -116,42 +116,28 @@ class AppFixtures extends Fixture
             $manager->persist($vaisseau);
         }
 
-        $type = new Type();
-        $type->setLibelle("Cargo");
-        $type->setTypeId(1);
-        $manager->persist($type);
+        $types = [
+            ['libelle' => 'Cargo', 'typeid' => 1],
+            ['libelle' => 'Minage', 'typeid' => 2],
+            ['libelle' => 'Salvage', 'typeid' => 3],
+            ['libelle' => 'Construction', 'typeid' => 4],
+            ['libelle' => 'Light fighter', 'typeid' => 5],
+            ['libelle' => 'Medium fighter', 'typeid' => 6],
+            ['libelle' => 'Heavy fighter', 'typeid' => 7],
+            ['libelle' => 'Bombardier', 'typeid' => 8],
+            ['libelle' => 'Corvettes', 'typeid' => 9],
+            ['libelle' => 'Utilitaire de combat', 'typeid' => 10],
+            ['libelle' => 'Exploration', 'typeid' => 11],
+            ['libelle' => 'Course', 'typeid' => 12],
+            ['libelle' => 'Médical', 'typeid' => 13],
+        ];
 
-        $type2 = new Type();
-        $type2->setLibelle("Minage");
-        $type2->setTypeId(2);
-        $manager->persist($type2);
-
-        $type3 = new Type();
-        $type3->setLibelle("Salvage");
-        $type3->setTypeId(3);
-        $manager->persist($type3);
-
-        $type4 = new Type();
-        $type4->setLibelle("Construction");
-        $type4->setTypeId(4);
-        $manager->persist($type4);
-
-        $type5 = new Type();
-        $type5->setLibelle("Light fighter");
-        $type5->setTypeId(5);
-        $manager->persist($type5);
-
-        $type6 = new Type();
-        $type6->setLibelle("Medium fighter");
-        $type6->setTypeId(6);
-        $manager->persist($type6);
-
-        $type7 = new Type();
-        $type7->setLibelle("Heavy fighter");
-        $type7->setTypeId(7);
-        $manager->persist($type7);
-
-
+        foreach ($types as $data) {
+            $type = new Type();
+            $type->setLibelle($data['libelle']);
+            $type->setTypeId($data['typeid']);
+            $manager->persist($type);
+        }
         // Finalisation
         $manager->flush();
     }

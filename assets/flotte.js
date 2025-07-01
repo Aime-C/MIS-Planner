@@ -13,7 +13,7 @@ function showHideIsReleased() {
         const isReleased = $(this).data('released');
         if (isReleased == 0) {
             if ( $('#idsortisreleased').is(':checked')) {
-                $(this).css("display", "block");
+                $(this).css("display", "flex");
             } else {
                 $(this).css("display", "none");
             }

@@ -23,43 +23,40 @@
 </div>
     <div id="iddivallcardflotte" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 m-10">
         {% for assignation in assignations %}
-
-            <div class="cardflotte text-white rounded-2xl shadow-md p-4" style="background-color: #242970;"
+            <div class="cardflotte flex flex-col justify-between text-white rounded-2xl shadow-md p-4" style="background-color: #242970; display: flex !important;"
                  data-released="{{ assignation.vaisseau.isReleased }}">
-
-                <p class="text-sm font-bold mb-2">Propriétaire : {{ assignation.membre.pseudo }}</p>
-                <p class="text-sm text-white-300">{{ assignation.marque.nom }} </p>
-                <p class="text-sm text-white-300">{{ assignation.vaisseau.nom }}</p>
-                {% set size_found = false %}
-                {% for size in assignation.sizes %}
-                    {% if assignation.vaisseau.sizeCategory == size.sizeId %}
-                        <p class="text-sm text-gray-300">Taille : {{ size.libelle }}</p>
-                        {% set size_found = true %}
+                <div>
+                    <p class="text-sm font-bold mb-2">Propriétaire : {{ assignation.membre.pseudo }}</p>
+                    <p class="text-sm text-white-300">{{ assignation.marque.nom }} </p>
+                    <p class="text-sm text-white-300">{{ assignation.vaisseau.nom }}</p>
+                    {% set size_found = false %}
+                    {% for size in assignation.sizes %}
+                        {% if assignation.vaisseau.sizeCategory == size.sizeId %}
+                            <p class="text-sm text-gray-300">Taille : {{ size.libelle }}</p>
+                            {% set size_found = true %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if not size_found %}
+                        <p class="text-sm text-gray-300">Taille : Non définie</p>
                     {% endif %}
-                {% endfor %}
-                {% if not size_found %}
-                    <p class="text-sm text-gray-300">Taille : Non définie</p>
-                {% endif %}
 
-                <p class="text-sm text-gray-300">Type : {{ assignation.type.libelle }}</p>
-                {% if assignation.vaisseau.isReleased == 1 %}
-                    <p class="text-sm text-gray-300">Disponible</p>
-                {% else %}
-                    <p class="text-sm text-gray-300">Non Sorti</p>
-                {% endif %}
-                <div class="mb-4">
-                    <img src="{{ assignation.vaisseau.image }}" width="300" alt="{{ assignation.vaisseau.nom }}" class="block mb-2"/>
-{#                         onerror="this.style.backgroundColor='#444'; this.style.display='block'; this.style.width='300px'; this.style.height='200px'; this.src=''; this.alt='Image manquante';"/>#}
-                    <div class="flex justify-between">
-                        <a href="flotte/edit/{{ assignation.id }}"
-                           class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
-                            Modifier
-                        </a>
-                        <a href="flotte/del/{{ assignation.id }}"
-                           class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
-                            Supprimer
-                        </a>
-                    </div>
+                    <p class="text-sm text-gray-300">Type : {{ assignation.type.libelle }}</p>
+                    {% if assignation.vaisseau.isReleased == 1 %}
+                        <p class="text-sm text-gray-300">Disponible</p>
+                    {% else %}
+                        <p class="text-sm text-gray-300">Non Sorti</p>
+                    {% endif %}
+                    <img src="{{ assignation.vaisseau.image }}" width="300" alt="{{ assignation.vaisseau.nom }}" class="block mb-2 mx-auto max-h-48 object-contain"/>
+                </div>
+                <div class="flex justify-between mt-auto">
+                    <a href="flotte/edit/{{ assignation.id }}"
+                       class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
+                        Modifier
+                    </a>
+                    <a href="flotte/del/{{ assignation.id }}"
+                       class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
+                        Supprimer
+                    </a>
                 </div>
             </div>
         {% endfor %}
