@@ -82,7 +82,8 @@ Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
     .addEntry('app', './assets/app.js')
-    .setPublicPath('/MIS-Planner/')
+    .addEntry('flotte', './assets/flotte.js')
+    .setPublicPath('/MIS-Planner/public/build/')
 
     .enablePostCssLoader()
 

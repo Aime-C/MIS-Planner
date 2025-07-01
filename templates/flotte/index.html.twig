@@ -1,17 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}La flotte{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('flotte') }}
+{% endblock %}
 
+{% block title %}La flotte{% endblock %}
 {% block body %}
     <h1 class="text-3xl font-bold text-white text-center mb-6 mt-10">La flotte</h1>
-    <a href="flotte/add"
-       class="ml-25 py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
-        Ajouter un vaisseau
-    </a>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 m-10">
+<div class="flex justify-between">
+    <div class="ml-20">
+        <label class="text-white text-sm font-bold mb-2"> Afficher les vaisseaux non sortis
+            <input id="idsortisreleased" type="checkbox" class="w-5 h-5">
+        </label>
+    </div>
+    <div class="mr-20">
+        <a href="flotte/add"
+           class="ml-25 py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
+            Ajouter un vaisseau
+        </a>
+    </div>
+</div>
+    <div id="iddivallcardflotte" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 m-10">
         {% for assignation in assignations %}
 
-            <div class="text-white rounded-2xl shadow-md p-4" style="background-color: #242970;">
+            <div class="cardflotte text-white rounded-2xl shadow-md p-4" style="background-color: #242970;"
+                 data-released="{{ assignation.vaisseau.isReleased }}">
 
                 <p class="text-sm font-bold mb-2">Propriétaire : {{ assignation.membre.pseudo }}</p>
                 <p class="text-sm text-white-300">{{ assignation.marque.nom }} </p>
@@ -34,7 +48,8 @@
                     <p class="text-sm text-gray-300">Non Sorti</p>
                 {% endif %}
                 <div class="mb-4">
-                    <img src="{{ assignation.vaisseau.image }}" width="300" alt="{{ assignation.vaisseau.nom }}" class="block mb-2" />
+                    <img src="{{ assignation.vaisseau.image }}" width="300" alt="{{ assignation.vaisseau.nom }}" class="block mb-2"/>
+{#                         onerror="this.style.backgroundColor='#444'; this.style.display='block'; this.style.width='300px'; this.style.height='200px'; this.src=''; this.alt='Image manquante';"/>#}
                     <div class="flex justify-between">
                         <a href="flotte/edit/{{ assignation.id }}"
                            class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">

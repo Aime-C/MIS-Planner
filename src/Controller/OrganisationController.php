@@ -53,7 +53,7 @@ final class OrganisationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $vaisseau->setImage("");
+//            $vaisseau->setImage("");
             $em->persist($vaisseau);
             $em->flush();
 
@@ -75,7 +75,7 @@ final class OrganisationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $vaisseau->setImage("");
+//            $vaisseau->setImage("");
             $em->persist($vaisseau);
             $em->flush();
 

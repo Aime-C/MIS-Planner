@@ -7,9 +7,11 @@ use App\Entity\Membres;
 use App\Entity\Size;
 use App\Entity\Type;
 use App\Entity\Vaisseaux;
+use Doctrine\DBAL\Types\StringType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -55,16 +57,24 @@ class VaisseauTypeForm extends AbstractType
                 'placeholder' => 'Sélectionnez une marque',
             ])
             ->add('isReleased')
-            ->add('height')
-            ->add('width')
-            ->add('length')
+            ->add('height', TextType::class, [
+                'required' => false,
+            ])
+            ->add('width', TextType::class, [
+                'required' => false,
+            ])
+            ->add('length', TextType::class, [
+                'required' => false,
+            ])
             ->add('SCU')
             ->add('type',ChoiceType::class, [
                 'choices' => $choicestypes,
                 'label' => 'Type',
                 'placeholder' => 'Sélectionnez un type',
             ])
-//            ->add('image')
+            ->add('image', TextType::class, [
+                'required' => false,
+            ])
         ;
     }
 

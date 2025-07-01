@@ -10,28 +10,29 @@
             {% else %}
                 <h1 class="text-2xl font-bold mb-6 text-center text-white">Ajouter un Vaisseau</h1>
                 <h2 class="text-2xl font-bold mb-6 text-center text-white">Faites attention à ne pas ajouter un vaisseau déja existant</h2>
+                <h2 class="text-2xl font-bold mb-6 text-center text-white">Prennez les infos du <a class="text-blue-500 underline" href="https://starcitizen.tools/Ships">Wiki</a></h2>
             {% endif %}
 
             {{ form_start(form) }}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {{ form_row(form.nom, {
-                    label: 'Nom',
+                    label: 'Nom*',
                     label_attr: {'class': 'text-white'},
                     'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-black'}
                 }) }}
                 {{ form_row(form.marque, {
-                    label: "Marque",
+                    label: "Marque*",
                     label_attr: {'class': 'text-white'},
                     'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-black'}
                 }) }}
                 {{ form_row(form.sizeCategory, {
-                    label: 'Taille',
+                    label: 'Taille*',
                     label_attr: {'class': 'text-white'},
                     'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-black'}
                 }) }}
 
                 {{ form_row(form.realeaseDate, {
-                    label: 'Date de sortie',
+                    label: 'Date de sortie*',
                     label_attr: {'class': 'text-white'},
                     'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-black'}
                 }) }}
@@ -58,12 +59,17 @@
                 }) }}
 
                 {{ form_row(form.SCU, {
-                    label: "SCU",
+                    label: "SCU*",
                     label_attr: {'class': 'text-white'},
                     'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-black'}
                 }) }}
                 {{ form_row(form.type, {
-                    label: "Type",
+                    label: "Type*",
+                    label_attr: {'class': 'text-white'},
+                    'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-black'}
+                }) }}
+                {{ form_row(form.image, {
+                    label: "Image (URL)",
                     label_attr: {'class': 'text-white'},
                     'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-black'}
                 }) }}
