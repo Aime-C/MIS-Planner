@@ -7,8 +7,31 @@ $(document).ready(function () {
         confirmExpulsion($(this));
     });
 
+    $('#idAddMemberButton').on('click', function (e) {
+        e.preventDefault();
+        newMemberChoice();
+    });
+
 
 });
+
+function newMemberChoice() {
+    var actionUrl = null;
+
+    $('#idNewMemberChoice').removeClass('hidden');
+
+    $('#idNewMemberButton').on('click', function () {
+        $('#idNewMemberChoice').addClass('hidden');
+        actionUrl = '/MIS-planner/public/membre/add';
+        window.location.href = actionUrl;
+    });
+
+    $('#idReintegrerMembreButton').on('click', function () {
+        actionUrl = '/MIS-planner/public/membre/addold';
+        window.location.href = actionUrl;
+    });
+
+}
 
 function confirmExpulsion(objButton) {
     let confirmAction = null;

@@ -50,6 +50,30 @@ final class MembresController extends AbstractController
         ]);
     }
 
+    #[Route('/membre/addold', name: 'app_membre_addold')]
+    public function restoreOldMember(Request $request, EntityManagerInterface $em, MembresRepository $membresRepository): Response
+    {
+        $membre = new Membres();
+
+        $form = $this->createForm(MembreTypeForm::class, $membre, [
+            'old' => true
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $oldMember = $membresRepository->findOneById($membre->getId());
+            $oldMember->setIsActif(true);
+            $em->persist($oldMember);
+            $em->flush();
+
+            return $this->redirectToRoute('app_membres');
+        }
+
+        return $this->render('membres/addold.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
     #[Route('/membre/edit/{id}', name: 'app_membre_edit')]
     public function edit(Request $request, EntityManagerInterface $em, int $id, MembresRepository $membresRepository): Response
     {
