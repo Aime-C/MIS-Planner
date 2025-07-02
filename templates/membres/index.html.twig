@@ -35,7 +35,7 @@
                 <tr class="border-b border-gray-600" style="background-color: #2c3190;">
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.pseudo|e }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.nom|e }}</td>
-                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.joinDate|date("m/d/Y") }}</td>
+                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.joinDate|date("d/m/Y") }}</td>
                     {% set rank_found = false %}
 
                     {% for rank in ranks %}

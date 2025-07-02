@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Base{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    {% block stylesheets %}
+        <style>
+            body {
+                /*border: 2px dashed #00f;*/
+                background-image: url("https://static1.dualshockersimages.com/wordpress/wp-content/uploads/2017/10/StarCitizenPioneer.jpg?q=70&fit=contain&w=1200&h=628&dpr=1");
+                background-size: cover;
+                background-repeat: no-repeat, repeat;
+                width: 100vw;
+                height: 100vh;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <nav class="bg-gray-800 z-1000 absolute w-full">
+        <div class="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="{{ path('app_home') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Accueil</a>
+                            <a href="{{ path('app_membres') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Membres</a>
+                            <a href="{{ path('app_flotte') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Flotte</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden sm:block">
+                    <a href="" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Déconnexion</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
+
+        <h1 class="text-3xl font-bold text-white text-center mb-6 mt-10">Dans les 12 prochains mois</h1>
+
+    </div>
+{% endblock %}
+</body>
+</html>
