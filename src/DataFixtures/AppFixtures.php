@@ -91,30 +91,30 @@ class AppFixtures extends Fixture
         }
 
         // 4. Vaisseaux (avec marque liée par entité)
-        $vaisseauxCsvPath = __DIR__ . '/Data/ships.csv';
-        $vaisseauxCsv = Reader::createFromPath($vaisseauxCsvPath, 'r');
-        $vaisseauxCsv->setHeaderOffset(0);
+//        $vaisseauxCsvPath = __DIR__ . '/Data/ships.csv';
+//        $vaisseauxCsv = Reader::createFromPath($vaisseauxCsvPath, 'r');
+//        $vaisseauxCsv->setHeaderOffset(0);
 
-        foreach ($vaisseauxCsv->getRecords() as $data) {
-            $vaisseau = new Vaisseaux();
-            $vaisseau->setNom($data['nom']);
-            $vaisseau->setRealeaseDate(new \DateTime($data['realeaseDate']));
-            $vaisseau->setSizeCategory((int)$data['sizeCategory']);
-            $vaisseau->setIsReleased((bool)$data['isReleased']);
-            $vaisseau->setHeight($this->nullOrFloat($data['height']));
-            $vaisseau->setWidth($this->nullOrFloat($data['width']));
-            $vaisseau->setLength($this->nullOrFloat($data['length']));
-            $vaisseau->setSCU((int)$data['SCU']);
-            $vaisseau->setType((int)$data['type']);
-            $vaisseau->setImage($data['image'] ?? null);
-
-            $marqueId = (int) $data['marque'];
-            if (isset($marquesMap[$marqueId])) {
-                $vaisseau->setMarque($marqueId); // OU: $vaisseau->setMarque($marquesMap[$marqueId]) si relation
-            }
-
-            $manager->persist($vaisseau);
-        }
+//        foreach ($vaisseauxCsv->getRecords() as $data) {
+//            $vaisseau = new Vaisseaux();
+//            $vaisseau->setNom($data['nom']);
+//            $vaisseau->setRealeaseDate(new \DateTime($data['realeaseDate']));
+//            $vaisseau->setSizeCategory((int)$data['sizeCategory']);
+//            $vaisseau->setIsReleased((bool)$data['isReleased']);
+//            $vaisseau->setHeight($this->nullOrFloat($data['height']));
+//            $vaisseau->setWidth($this->nullOrFloat($data['width']));
+//            $vaisseau->setLength($this->nullOrFloat($data['length']));
+//            $vaisseau->setSCU((int)$data['SCU']);
+//            $vaisseau->setType((int)$data['type']);
+//            $vaisseau->setImage($data['image'] ?? null);
+//
+//            $marqueId = (int) $data['marque'];
+//            if (isset($marquesMap[$marqueId])) {
+//                $vaisseau->setMarque($marqueId); // OU: $vaisseau->setMarque($marquesMap[$marqueId]) si relation
+//            }
+//
+//            $manager->persist($vaisseau);
+//        }
 
         $types = [
             ['libelle' => 'Cargo', 'typeid' => 1],
@@ -130,6 +130,7 @@ class AppFixtures extends Fixture
             ['libelle' => 'Exploration', 'typeid' => 11],
             ['libelle' => 'Course', 'typeid' => 12],
             ['libelle' => 'Médical', 'typeid' => 13],
+            ['libelle' => 'Frégate', 'typeid' => 14],
         ];
 
         foreach ($types as $data) {
