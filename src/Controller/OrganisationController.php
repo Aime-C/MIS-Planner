@@ -29,7 +29,7 @@ final class OrganisationController extends AbstractController
     #[Route('/organisation/vaisseaux', name: 'app_organisationVaisseaux')]
     public function organisationVaisseaux(MarquesRepository $marquesRepository ,VaisseauxRepository $vaisseauxRepository, SizeRepository $sizeRepository, TypeRepository $typeRepository): Response
     {
-        $sizes = $sizeRepository->findAll();
+//        $sizes = $sizeRepository->findAll();
         $vaisseaux = $vaisseauxRepository->findBy([], ['nom' => 'ASC']);
         $marques = $marquesRepository->findAll();
         $types = $typeRepository->findAll();
@@ -37,7 +37,7 @@ final class OrganisationController extends AbstractController
         return $this->render('organisation/donnees/vaisseaux.html.twig', [
             'controller_name' => 'OrganisationDonnees',
             'vaisseaux' => $vaisseaux,
-            'sizes' => $sizes,
+//            'sizes' => $sizes,
             'marques' => $marques,
             'types' => $types,
 
@@ -85,6 +85,17 @@ final class OrganisationController extends AbstractController
         return $this->render('organisation/donnees/add.html.twig', [
             'form' => $form->createView(),
             'isModify' => true,
+        ]);
+    }
+
+    #[Route('/organisation/vaisseaux/{id}', name: 'app_organisationVaisseauxDetails')]
+    public function details(Request $request, EntityManagerInterface $em, int $id): Response
+    {
+        $vaisseau = $em->getRepository(Vaisseaux::class)->find($id);
+
+
+        return $this->render('organisation/donnees/details.html.twig', [
+            'vaisseau' => $vaisseau,
         ]);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TypeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TypeRepository::class)]
@@ -13,11 +15,19 @@ class Type
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $type_id = null;
-
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
+
+    /**
+     * @var Collection<int, Vaisseaux>
+     */
+    #[ORM\OneToMany(targetEntity: Vaisseaux::class, mappedBy: 'type')]
+    private Collection $vaisseaux;
+
+    public function __construct()
+    {
+        $this->vaisseaux = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -27,18 +37,6 @@ class Type
     public function setId(int $id): static
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    public function getTypeId(): ?int
-    {
-        return $this->type_id;
-    }
-
-    public function setTypeId(int $type_id): static
-    {
-        $this->type_id = $type_id;
 
         return $this;
     }
@@ -53,5 +51,15 @@ class Type
         $this->libelle = $libelle;
 
         return $this;
+    }
+
+    public function getVaisseaux(): Collection
+    {
+        return $this->vaisseaux;
+    }
+
+    public function setVaisseaux(Collection $vaisseaux): void
+    {
+        $this->vaisseaux = $vaisseaux;
     }
 }

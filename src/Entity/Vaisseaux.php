@@ -19,11 +19,13 @@ class Vaisseaux
     #[ORM\Column]
     private ?\DateTime $realeaseDate = null;
 
-    #[ORM\Column]
-    private ?int $sizeCategory = null;
+    #[ORM\ManyToOne(inversedBy: 'vaisseaux')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Size $sizeCategory = null;
 
-    #[ORM\Column]
-    private ?int $marque = null;
+    #[ORM\ManyToOne(inversedBy: 'vaisseaux')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Marques $marque = null;
 
     #[ORM\Column]
     private ?bool $isReleased = null;
@@ -37,24 +39,21 @@ class Vaisseaux
     #[ORM\Column(nullable: true)]
     private ?float $length = null;
 
-    public function getMarque(): ?int
-    {
-        return $this->marque;
-    }
-
-    public function setMarque(?int $marque): void
-    {
-        $this->marque = $marque;
-    }
-
     #[ORM\Column]
     private ?int $SCU = null;
 
-    #[ORM\Column]
-    private ?int $type = null;
+    #[ORM\ManyToOne(inversedBy: 'vaisseaux')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Type $type = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 1000, nullable: true)]
     private ?string $image = null;
+
+
+    #[ORM\Column(length: 1000, nullable: true)]
+    private ?string $poster = null;
+
+
 
     public function getId(): ?int
     {
@@ -92,16 +91,26 @@ class Vaisseaux
         return $this;
     }
 
-    public function getSizeCategory(): ?int
+    public function getSizeCategory(): ?Size
     {
         return $this->sizeCategory;
     }
 
-    public function setSizeCategory(int $sizeCategory): static
+    public function setSizeCategory(?Size $sizeCategory): static
     {
         $this->sizeCategory = $sizeCategory;
 
         return $this;
+    }
+
+    public function getMarque(): ?Marques
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(?Marques $marque): void
+    {
+        $this->marque = $marque;
     }
 
     public function isReleased(): ?bool
@@ -164,16 +173,14 @@ class Vaisseaux
         return $this;
     }
 
-    public function getType(): ?int
+    public function getType(): ?Type
     {
         return $this->type;
     }
 
-    public function setType(int $type): static
+    public function setType(?Type $type): void
     {
         $this->type = $type;
-
-        return $this;
     }
 
     public function getImage(): ?string
@@ -187,4 +194,15 @@ class Vaisseaux
 
         return $this;
     }
+
+    public function getPoster(): ?string
+    {
+        return $this->poster;
+    }
+
+    public function setPoster(?string $poster): void
+    {
+        $this->poster = $poster;
+    }
+
 }

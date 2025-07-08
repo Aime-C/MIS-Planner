@@ -23,17 +23,11 @@ final class FlotteController extends AbstractController
     #[Route('/flotte', name: 'app_flotte')]
     public function index(VaisseauxMembresRepository $vaisseauxMembresRepository,
                           MembresRepository $membresRepository,
-                          VaisseauxRepository $vaisseauxRepository,
-                          MarquesRepository $marquesRepository,
-                          SizeRepository $sizeRepository,
-                          TypeRepository $typeRepository): Response
+                          VaisseauxRepository $vaisseauxRepository): Response
     {
         $vaisseauxMembres = $vaisseauxMembresRepository->findAll();
         $membres = $membresRepository->findAll();
         $vaisseaux = $vaisseauxRepository->findAll();
-        $marques = $marquesRepository->findAll();
-        $size = $sizeRepository->findAll();
-        $types = $typeRepository->findAll();
 
         $mapped = [];
 
@@ -41,7 +35,6 @@ final class FlotteController extends AbstractController
             $membre = null;
             $vaisseau = null;
             $marqueVaisseau = null;
-            $typeVaisseau = null;
 
             // Trouver le membre correspondant
             foreach ($membres as $m) {
@@ -61,29 +54,10 @@ final class FlotteController extends AbstractController
                 }
             }
 
-            // Trouver la marque correspondante
-            foreach ($marques as $marque) {
-                if ($marque->getIdMarque() === $vaisseau->getMarque()) {
-                    $marqueVaisseau = $marque;
-                    break;
-                }
-            }
-
-            // Trouver le type correspondant
-            foreach ($types as $type) {
-                if ($type->getTypeId() === $vaisseau->getType()) {
-                    $typeVaisseau = $type;
-                    break;
-                }
-            }
-
-            if ($membre && $vaisseau && $marqueVaisseau && $typeVaisseau) {
+            if ($membre && $vaisseau) {
                 $mapped[] = [
                     'membre' => $membre,
                     'vaisseau' => $vaisseau,
-                    'marque' => $marqueVaisseau,
-                    'sizes' => $size,
-                    'type' => $typeVaisseau,
                     'id' => $vm->getId()
                 ];
             }

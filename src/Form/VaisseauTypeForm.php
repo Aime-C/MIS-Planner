@@ -9,8 +9,10 @@ use App\Entity\Type;
 use App\Entity\Vaisseaux;
 use Doctrine\DBAL\Types\StringType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,53 +28,48 @@ class VaisseauTypeForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $marques = $this->em->getRepository(Marques::class)->findAll();
-        $choicesmarques = [];
-        foreach ($marques as $marque) {
-            $choicesmarques[$marque->getNom()] = $marque->getIdMarque();
-        }
-        $sizes = $this->em->getRepository(Size::class)->findAll();
-        $choicessizes = [];
-        foreach ($sizes as $size) {
-            $choicessizes[$size->getLibelle()] = $size->getSizeId();
-        }
-        $types = $this->em->getRepository(Type::class)->findAll();
-        $choicestypes = [];
-        foreach ($types as $type) {
-            $choicestypes[$type->getLibelle()] = $type->getTypeId();
-        }
 
         $builder
             ->add('nom')
             ->add('realeaseDate')
-//            ->add('sizeCategory')
-            ->add('sizeCategory',ChoiceType::class, [
-                'choices' => $choicessizes,
+            ->add('sizeCategory',EntityType::class, [
+                'class' => Size::class,
                 'label' => 'Taille',
+                'choice_label' => 'libelle',
                 'placeholder' => 'Sélectionnez une taille',
+
             ])
-            ->add('marque',ChoiceType::class, [
-                'choices' => $choicesmarques,
+
+            ->add('marque',EntityType::class, [
+                'class' => Marques::class,
                 'label' => 'Marque',
+                'choice_label' => 'nom',
                 'placeholder' => 'Sélectionnez une marque',
             ])
             ->add('isReleased')
-            ->add('height', TextType::class, [
+            ->add('height', NumberType::class, [
                 'required' => false,
+                'invalid_message' => 'Veuillez entrer un nombre',
             ])
-            ->add('width', TextType::class, [
+            ->add('width', NumberType::class, [
                 'required' => false,
+                'invalid_message' => 'Veuillez entrer un nombre',
             ])
-            ->add('length', TextType::class, [
+            ->add('length', NumberType::class, [
                 'required' => false,
+                'invalid_message' => 'Veuillez entrer un nombre',
             ])
             ->add('SCU')
-            ->add('type',ChoiceType::class, [
-                'choices' => $choicestypes,
+            ->add('type',EntityType::class, [
+                'class' => Type::class,
+                'choice_label' => 'libelle',
                 'label' => 'Type',
                 'placeholder' => 'Sélectionnez un type',
             ])
             ->add('image', TextType::class, [
+                'required' => false,
+            ])
+            ->add('poster', TextType::class, [
                 'required' => false,
             ])
         ;

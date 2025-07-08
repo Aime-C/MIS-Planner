@@ -27,20 +27,10 @@
                  data-released="{{ assignation.vaisseau.isReleased }}">
                 <div>
                     <p class="text-sm font-bold mb-2">Propriétaire : {{ assignation.membre.pseudo }}</p>
-                    <p class="text-sm text-white-300">{{ assignation.marque.nom }} </p>
+                    <p class="text-sm text-white-300">{{ assignation.vaisseau.marque.nom }} </p>
                     <p class="text-sm text-white-300">{{ assignation.vaisseau.nom }}</p>
-                    {% set size_found = false %}
-                    {% for size in assignation.sizes %}
-                        {% if assignation.vaisseau.sizeCategory == size.sizeId %}
-                            <p class="text-sm text-gray-300">Taille : {{ size.libelle }}</p>
-                            {% set size_found = true %}
-                        {% endif %}
-                    {% endfor %}
-                    {% if not size_found %}
-                        <p class="text-sm text-gray-300">Taille : Non définie</p>
-                    {% endif %}
-
-                    <p class="text-sm text-gray-300">Type : {{ assignation.type.libelle }}</p>
+                    <p class="text-sm text-gray-300">Taille : {{ assignation.vaisseau.sizeCategory.libelle|e }}</p>
+                    <p class="text-sm text-gray-300">Type : {{assignation.vaisseau.type.libelle|e }}</p>
                     {% if assignation.vaisseau.isReleased == 1 %}
                         <p class="text-sm text-gray-300">Disponible</p>
                     {% else %}

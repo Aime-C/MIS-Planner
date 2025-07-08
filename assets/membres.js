@@ -22,12 +22,14 @@ function newMemberChoice() {
 
     $('#idNewMemberButton').on('click', function () {
         $('#idNewMemberChoice').addClass('hidden');
-        actionUrl = '/MIS-planner/public/membre/add';
+        // actionUrl = '/MIS-planner/public/membre/add';
+        actionUrl = '/membre/add';
         window.location.href = actionUrl;
     });
 
     $('#idReintegrerMembreButton').on('click', function () {
-        actionUrl = '/MIS-planner/public/membre/addold';
+        // actionUrl = '/MIS-planner/public/membre/addold';
+        actionUrl = '/membre/addold';
         window.location.href = actionUrl;
     });
 
@@ -38,7 +40,8 @@ function confirmExpulsion(objButton) {
 
     const idMembre = objButton.data('idmembre');
 
-    const actionUrl = '/MIS-planner/public/membre/del/'+idMembre; // URL à exécuter sur "Oui"
+    // const actionUrl = '/MIS-planner/public/membre/del/'+idMembre; // URL à exécuter sur "Oui"
+    const actionUrl = '/membre/del/'+idMembre; // URL à exécuter sur "Oui"
     confirmAction = () => {
         window.location.href = actionUrl;
     };

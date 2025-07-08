@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MarquesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MarquesRepository::class)]
@@ -13,11 +15,19 @@ class Marques
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_marque = null;
-
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
+
+    /**
+     * @var Collection<int, Vaisseaux>
+     */
+    #[ORM\OneToMany(targetEntity: Vaisseaux::class, mappedBy: 'marque')]
+    private Collection $vaisseaux;
+
+    public function __construct()
+    {
+        $this->vaisseaux = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -30,19 +40,6 @@ class Marques
 
         return $this;
     }
-
-    public function getIdMarque(): ?int
-    {
-        return $this->id_marque;
-    }
-
-    public function setIdMarque(int $id_marque): static
-    {
-        $this->id_marque = $id_marque;
-
-        return $this;
-    }
-
     public function getNom(): ?string
     {
         return $this->nom;
@@ -51,6 +48,36 @@ class Marques
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vaisseaux>
+     */
+    public function getVaisseaux(): Collection
+    {
+        return $this->vaisseaux;
+    }
+
+    public function addVaisseaux(Vaisseaux $vaisseaux): static
+    {
+        if (!$this->vaisseaux->contains($vaisseaux)) {
+            $this->vaisseaux->add($vaisseaux);
+            $vaisseaux->setSizeCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVaisseaux(Vaisseaux $vaisseaux): static
+    {
+        if ($this->vaisseaux->removeElement($vaisseaux)) {
+            // set the owning side to null (unless already changed)
+            if ($vaisseaux->getSizeCategory() === $this) {
+                $vaisseaux->setSizeCategory(null);
+            }
+        }
 
         return $this;
     }

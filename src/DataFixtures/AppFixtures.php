@@ -57,37 +57,29 @@ class AppFixtures extends Fixture
         $manager->persist($testMember2);
 
         $sizeSmall = new Size();
-        $sizeSmall->setSizeId(1);
         $sizeSmall->setLibelle("Small");
         $manager->persist($sizeSmall);
 
         $sizeMedium = new Size();
-        $sizeMedium->setSizeId(2);
         $sizeMedium->setLibelle("Medium");
         $manager->persist($sizeMedium);
 
         $sizeLarge = new Size();
-        $sizeLarge->setSizeId(3);
         $sizeLarge->setLibelle("Large");
         $manager->persist($sizeLarge);
 
         $sizeCapital = new Size();
-        $sizeCapital->setSizeId(4);
         $sizeCapital->setLibelle("Capital");
         $manager->persist($sizeCapital);
 
         // 3. Marques (chargées d'abord pour pouvoir les lier ensuite)
-        $marquesMap = []; // id_marque => entity
         $marquesCsv = Reader::createFromPath(__DIR__ . '/Data/marques.csv', 'r');
         $marquesCsv->setHeaderOffset(0);
 
         foreach ($marquesCsv->getRecords() as $record) {
             $marque = new Marques();
-            $marque->setIdMarque((int) $record['id_marque']);
             $marque->setNom($record['nom']);
             $manager->persist($marque);
-
-            $marquesMap[(int)$record['id_marque']] = $marque;
         }
 
         // 4. Vaisseaux (avec marque liée par entité)
@@ -117,26 +109,25 @@ class AppFixtures extends Fixture
 //        }
 
         $types = [
-            ['libelle' => 'Cargo', 'typeid' => 1],
-            ['libelle' => 'Minage', 'typeid' => 2],
-            ['libelle' => 'Salvage', 'typeid' => 3],
-            ['libelle' => 'Construction', 'typeid' => 4],
-            ['libelle' => 'Light fighter', 'typeid' => 5],
-            ['libelle' => 'Medium fighter', 'typeid' => 6],
-            ['libelle' => 'Heavy fighter', 'typeid' => 7],
-            ['libelle' => 'Bombardier', 'typeid' => 8],
-            ['libelle' => 'Corvettes', 'typeid' => 9],
-            ['libelle' => 'Utilitaire de combat', 'typeid' => 10],
-            ['libelle' => 'Exploration', 'typeid' => 11],
-            ['libelle' => 'Course', 'typeid' => 12],
-            ['libelle' => 'Médical', 'typeid' => 13],
-            ['libelle' => 'Frégate', 'typeid' => 14],
+            ['libelle' => 'Cargo'],
+            ['libelle' => 'Minage'],
+            ['libelle' => 'Salvage'],
+            ['libelle' => 'Construction'],
+            ['libelle' => 'Light fighter'],
+            ['libelle' => 'Medium fighter'],
+            ['libelle' => 'Heavy fighter'],
+            ['libelle' => 'Bombardier'],
+            ['libelle' => 'Corvettes'],
+            ['libelle' => 'Utilitaire de combat',],
+            ['libelle' => 'Exploration'],
+            ['libelle' => 'Course'],
+            ['libelle' => 'Médical'],
+            ['libelle' => 'Frégate'],
         ];
 
         foreach ($types as $data) {
             $type = new Type();
             $type->setLibelle($data['libelle']);
-            $type->setTypeId($data['typeid']);
             $manager->persist($type);
         }
         // Finalisation
