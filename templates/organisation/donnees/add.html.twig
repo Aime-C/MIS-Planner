@@ -4,13 +4,52 @@
 
 {% block body %}
     <div class="min-h-screen flex items-start justify-center pt-20">
-        <div class="w-full max-w-4xl shadow-lg rounded-xl p-8" style="background-color: #242970;">
+        <div class="w-full max-w-4xl shadow-lg rounded-xl p-8" style="background-color: rgba(0, 12, 45, 60%);">
             {% if isModify %}
                 <h1 class="text-2xl font-bold mb-6 text-center text-white">Modifier un Vaisseau</h1>
+                <style>
+                    body {
+                        background: black;
+                    {% if vaisseau.poster is null %}
+                        background-image:
+                                linear-gradient(to right, rgba(0, 0, 0, 50%) 20%, rgba(0, 0, 0, 50%) 100%),
+                                url("https://media.starcitizen.tools/4/4b/Jack-kirkham-jackkirkham-hangars-02.jpg");
+                    {% else %}
+                        background-image:
+                                linear-gradient(to right, rgba(0, 0, 0, 50%) 20%, rgba(0, 0, 0, 60%) 100%),
+                                url("{{ vaisseau.poster|e }}");
+                    {% endif %}
+
+                        background-position: right center;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-attachment: fixed;
+
+                        width: 100vw;
+                        height: 100vh;
+                        overflow: hidden;
+                    }
+                </style>
             {% else %}
                 <h1 class="text-2xl font-bold mb-6 text-center text-white">Ajouter un Vaisseau</h1>
                 <h2 class="text-2xl font-bold mb-6 text-center text-white">Faites attention à ne pas ajouter un vaisseau déja existant</h2>
                 <h2 class="text-2xl font-bold mb-6 text-center text-white">Prennez les infos du <a class="text-blue-500 underline" href="https://starcitizen.tools/Ships">Wiki</a></h2>
+                <style>
+                    body {
+                        background: black;
+                        background-image:
+                                linear-gradient(to right, rgba(0, 0, 0, 50%) 20%, rgba(0, 0, 0, 60%) 100%),
+                                url("https://media.starcitizen.tools/4/4b/Jack-kirkham-jackkirkham-hangars-02.jpg");
+                        background-position: right center;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-attachment: fixed;
+
+                        width: 100vw;
+                        height: 100vh;
+                        overflow: hidden;
+                    }
+                </style>
             {% endif %}
 
             {{ form_start(form) }}

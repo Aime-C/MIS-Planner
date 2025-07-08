@@ -2,5 +2,53 @@
 
 {% block title %}Vaisseaux{% endblock %}
 
+    {% block stylesheets %}
+        <style>
+            body {
+                background: black;
+            {% if vaisseau.poster is null %}
+                background-image:
+                        linear-gradient(to right, black 20%, rgba(0, 0, 0, 0) 100%),
+                        url("https://media.starcitizen.tools/4/4b/Jack-kirkham-jackkirkham-hangars-02.jpg");
+            {% else %}
+                background-image:
+                        linear-gradient(to right, black 20%, rgba(0, 0, 0, 0) 100%),
+                        url("{{ vaisseau.poster|e }}");
+            {% endif %}
+                background-size: cover;
+                background-repeat: no-repeat;
+                width: 100vw;
+                height: 100vh;
+                background-position-x: 120px;
+            }
+        </style>
+    {% endblock %}
+
 {% block body %}
+    <div class="grid grid-cols-5 text-white">
+        <div>
+            <h1 class="text-3xl font-bold text-white text-left ml-5 mt-5">{{ vaisseau.marque.nom|e }}</h1>
+            <h1 class="text-3xl font-bold text-white text-left ml-5 mt-2">{{ vaisseau.nom|e }}</h1>
+            <h2 class="text-2xl font-bold text-white text-left ml-5 mt-7">Taille : {{ vaisseau.sizeCategory.libelle|e }}</h2>
+            <h2 class="text-2xl font-bold text-white text-left ml-5 mt-2">Type : {{ vaisseau.type.libelle|e }}</h2>
+            <h2 class="text-2xl font-bold text-white text-left ml-5 mt-2">{{ vaisseau.scu|e }} SCU</h2>
+            {% if vaisseau.height is null %}
+            {% else %}
+                <h2 class="text-2xl font-bold text-white text-left ml-5 mt-2">Hauteur : {{ vaisseau.height|e }}m</h2>
+            {% endif %}
+            {% if vaisseau.length is null %}
+            {% else %}
+                <h2 class="text-2xl font-bold text-white text-left ml-5 mt-2">Longueur : {{ vaisseau.length|e }}m</h2>
+            {% endif %}
+            {% if vaisseau.width is null %}
+            {% else %}
+                <h2 class="text-2xl font-bold text-white text-left ml-5 mt-2">Largeur : {{ vaisseau.width|e }}m</h2>
+            {% endif %}
+        </div>
+{#        <div>01</div>#}
+{#        <div>01</div>#}
+{#        <div>01</div>#}
+{#        <div>01</div>#}
+    </div>
+
 {% endblock %}

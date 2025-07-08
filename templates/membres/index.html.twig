@@ -7,6 +7,20 @@
 
 {% block title %}Liste des Membres{% endblock %}
 
+    {% block stylesheets %}
+        <style>
+            body {
+                background-image:
+                        linear-gradient(to right, rgba(0, 0, 0, 50%) 20%, rgba(0, 0, 0, 50%) 100%),
+                        url("https://media.starcitizen.tools/a/ae/Ship-Idris-Crew.jpg");
+                background-size: cover;
+                background-repeat: no-repeat, repeat;
+                width: 100vw;
+                height: 100vh;
+            }
+        </style>
+    {% endblock %}
+
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }

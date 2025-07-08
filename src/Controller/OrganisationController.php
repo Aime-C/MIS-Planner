@@ -83,6 +83,7 @@ final class OrganisationController extends AbstractController
         }
 
         return $this->render('organisation/donnees/add.html.twig', [
+            'vaisseau' => $vaisseau,
             'form' => $form->createView(),
             'isModify' => true,
         ]);
