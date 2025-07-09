@@ -29,7 +29,7 @@
                          class="absolute inset-0 w-full h-full object-cover z-0">
 
                     <!-- Overlay de contenu -->
-                    <div class="relative z-10 flex items-center justify-center h-full bg-black/10">
+                    <div class="relative z-10 flex items-center justify-center h-full bg-black/55">
                         <h3 class="text-lg font-bold text-white text-center">Membres</h3>
                     </div>
 
@@ -45,7 +45,7 @@
                          class="absolute inset-0 w-full h-full object-cover z-0">
 
                     <!-- Overlay de contenu -->
-                    <div class="relative z-10 flex items-center justify-center h-full bg-black/10">
+                    <div class="relative z-10 flex items-center justify-center h-full bg-black/55">
                         <h3 class="text-lg font-bold text-white text-center">Flotte</h3>
                     </div>
 
@@ -61,7 +61,7 @@
                          class="absolute inset-0 w-full h-full object-cover z-0">
 
                     <!-- Overlay de contenu -->
-                    <div class="relative z-10 flex items-center justify-center h-full bg-black/10">
+                    <div class="relative z-10 flex items-center justify-center h-full bg-black/55">
                         <h3 class="text-lg font-bold text-white text-center">Missions</h3>
                     </div>
 
@@ -82,7 +82,7 @@
                          class="absolute inset-0 w-full h-full object-cover z-0">
 
                     <!-- Overlay de contenu -->
-                    <div class="relative z-10 flex items-center justify-center h-full bg-black/10">
+                    <div class="relative z-10 flex items-center justify-center h-full bg-black/55">
                         <h3 class="text-lg font-bold text-white text-center">Base</h3>
                     </div>
 
@@ -98,13 +98,13 @@
                          class="absolute inset-0 w-full h-full object-cover z-0">
 
                     <!-- Overlay de contenu -->
-                    <div class="relative z-10 flex items-center justify-center h-full bg-black/10">
+                    <div class="relative z-10 flex items-center justify-center h-full bg-black/55">
                         <h3 class="text-lg font-bold text-white text-center">Tips</h3>
                     </div>
 
                 </div>
             </a>
-
+            {% if is_granted('ROLE_ADMIN') %}
             <!-- Carte 4 -->
             <a href="organisation" class="block transform transition-transform duration-300 hover:scale-105">
                 <div class="relative bg-grey-900 rounded-2xl overflow-hidden shadow-lg w-64 h-80">
@@ -114,13 +114,13 @@
                          class="absolute inset-0 w-full h-full object-cover z-0">
 
                     <!-- Overlay de contenu -->
-                    <div class="relative z-10 flex items-center justify-center h-full bg-black/10">
+                    <div class="relative z-10 flex items-center justify-center h-full bg-black/55">
                         <h3 class="text-lg font-bold text-white text-center">Organisation</h3>
                     </div>
 
                 </div>
             </a>
-
+            {% endif %}
         </div>
     </div>
 

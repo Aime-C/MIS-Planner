@@ -27,10 +27,12 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
     <h1 class="text-3xl font-bold text-white text-center mb-6 mt-10">Liste des membres</h1>
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="membre/add" id="idAddMemberButton"
        class="ml-25 py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">
         Ajouter un membre
     </a>
+    {% endif %}
     <div class="flex items-center justify-center mt-5">
         <div class="overflow-x-auto rounded-lg shadow-lg">
             <table class="w-[90vw] min-w-full border border-gray-600 text-white" style="">
@@ -41,7 +43,9 @@
                     <th class="px-6 py-3 border-r border-gray-600">Date d'arrivé</th>
                     <th class="px-6 py-3 border-r border-gray-600">Rang</th>
 {#                    <th class="px-6 py-3 border-r border-gray-600">Actif</th>#}
+                    {% if is_granted('ROLE_ADMIN') %}
                     <th class="px-6 py-3">Action</th>
+                    {% endif %}
                 </tr>
                 </thead>
                 <tbody>
@@ -51,6 +55,7 @@
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.nom|e }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.joinDate|date("d/m/Y") }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.rank.libelle|e }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <td class="px-6 py-4 border-r border-gray-600">
                         <div class="flex gap-2 flex-wrap">
 {#                            <a href="membre/{{ membre.id|e }}"#}
@@ -69,6 +74,7 @@
                         </div>
                         <input id="idMembreHidden" value="{{ membre.id|e }}" type="hidden">
                     </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
                 </tbody>

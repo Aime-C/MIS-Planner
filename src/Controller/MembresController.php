@@ -11,6 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+
+
 
 final class MembresController extends AbstractController
 {
@@ -25,6 +28,7 @@ final class MembresController extends AbstractController
         ]);
     }
     #[Route('/membre/add', name: 'app_membre_add')]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
         $membre = new Membres();
@@ -46,6 +50,7 @@ final class MembresController extends AbstractController
     }
 
     #[Route('/membre/addold', name: 'app_membre_addold')]
+    #[IsGranted('ROLE_ADMIN')]
     public function restoreOldMember(Request $request, EntityManagerInterface $em, MembresRepository $membresRepository): Response
     {
         $membre = new Membres();
@@ -70,6 +75,7 @@ final class MembresController extends AbstractController
     }
 
     #[Route('/membre/edit/{id}', name: 'app_membre_edit')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, EntityManagerInterface $em, int $id, MembresRepository $membresRepository): Response
     {
         $membre = $membresRepository->findOneById($id);
@@ -90,6 +96,7 @@ final class MembresController extends AbstractController
     }
 
     #[Route('/membre/del/{id}', name: 'app_membre_del')]
+    #[IsGranted('ROLE_ADMIN')]
     public function expulser(Request $request, EntityManagerInterface $em, int $id, MembresRepository $membresRepository): Response
     {
         $membre = $membresRepository->findOneById($id);

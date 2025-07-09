@@ -7,12 +7,15 @@ use App\Entity\Membres;
 use App\Entity\Rank;
 use App\Entity\Size;
 use App\Entity\Type;
+use App\Entity\User;
 use App\Entity\Vaisseaux;
 use App\Repository\RankRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\ObjectManager;
 use League\Csv\Reader;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {

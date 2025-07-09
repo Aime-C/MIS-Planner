@@ -99,4 +99,14 @@ final class OrganisationController extends AbstractController
             'vaisseau' => $vaisseau,
         ]);
     }
+
+    #[Route('/organisation/attente', name: 'app_organisationAttente')]
+    public function organisationComptesAttente(): Response
+    {
+
+        return $this->render('organisation/attente/index.html.twig', [
+            'controller_name' => 'OrganisationDonnees',
+
+        ]);
+    }
 }

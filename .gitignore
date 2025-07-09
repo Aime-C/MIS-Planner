@@ -10,6 +10,7 @@
 /public/bundles/
 /var/
 /vendor/
+#/src/DataFixtures/UserFixtures.php
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
