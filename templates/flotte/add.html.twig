@@ -9,12 +9,12 @@
 
             {{ form_start(form) }}
             <div class="space-y-4">
-                {{ form_row(form.membre_id, {
+                {{ form_row(form.membre, {
                     label: 'Membre',
                     label_attr: {'class': 'text-white'},
                     'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-black'}
                 }) }}
-                {{ form_row(form.vaisseau_id, {
+                {{ form_row(form.vaisseau, {
                     label: 'Vaisseau',
                     label_attr: {'class': 'text-white'},
                     'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-black'}

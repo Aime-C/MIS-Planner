@@ -32,7 +32,7 @@ class MembresRepository extends ServiceEntityRepository
     public function getAll(): array
     {
         return $this->createQueryBuilder('m')
-            ->orderBy('m.rank_id', 'ASC') // Tri optionnel
+            ->orderBy('m.rank', 'ASC') // Tri optionnel
             ->getQuery()
             ->getResult();
     }
@@ -40,7 +40,7 @@ class MembresRepository extends ServiceEntityRepository
     public function getAllActif(): array
     {
         return $this->createQueryBuilder('m')
-            ->orderBy('m.rank_id', 'ASC')
+            ->orderBy('m.rank', 'ASC')
             ->andWhere('m.isActif = 1')// Tri optionnel
             ->getQuery()
             ->getResult();
@@ -49,7 +49,7 @@ class MembresRepository extends ServiceEntityRepository
     public function getAllInactif(): array
     {
         return $this->createQueryBuilder('m')
-            ->orderBy('m.rank_id', 'ASC')
+            ->orderBy('m.rank', 'ASC')
             ->andWhere('m.isActif = 0')// Tri optionnel
             ->getQuery()
             ->getResult();

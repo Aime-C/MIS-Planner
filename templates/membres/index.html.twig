@@ -33,8 +33,8 @@
     </a>
     <div class="flex items-center justify-center mt-5">
         <div class="overflow-x-auto rounded-lg shadow-lg">
-            <table class="w-[90vw] min-w-full border border-gray-600 text-white" style="background-color: #242970;">
-                <thead>
+            <table class="w-[90vw] min-w-full border border-gray-600 text-white" style="">
+                <thead style="background-color: rgba(4, 2, 37, 65%);">
                 <tr class="text-left border-b border-gray-600">
                     <th class="px-6 py-3 border-r border-gray-600">Pseudo</th>
                     <th class="px-6 py-3 border-r border-gray-600">Nom</th>
@@ -46,23 +46,11 @@
                 </thead>
                 <tbody>
                 {% for membre in membres %}
-                <tr class="border-b border-gray-600" style="background-color: #2c3190;">
+                <tr class="border-b border-gray-600" style="background-color: rgba(0, 12, 45, 50%);">
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.pseudo|e }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.nom|e }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.joinDate|date("d/m/Y") }}</td>
-                    {% set rank_found = false %}
-
-                    {% for rank in ranks %}
-                        {% if membre.rankid == rank.hierachie %}
-                            <td class="px-6 py-4 border-r border-gray-600">{{ rank.libelle|e }}</td>
-                            {% set rank_found = true %}
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if not rank_found %}
-                        <td class="px-6 py-4 border-r border-gray-600">Unranked</td>
-                    {% endif %}
-{#                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.isActif|e }}</td>#}
+                    <td class="px-6 py-4 border-r border-gray-600">{{ membre.rank.libelle|e }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">
                         <div class="flex gap-2 flex-wrap">
                             <a href="membre/{{ membre.id|e }}"

@@ -8,6 +8,7 @@ use App\Entity\Rank;
 use App\Entity\Size;
 use App\Entity\Type;
 use App\Entity\Vaisseaux;
+use App\Repository\RankRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\ObjectManager;
@@ -15,6 +16,7 @@ use League\Csv\Reader;
 
 class AppFixtures extends Fixture
 {
+
     public function load(ObjectManager $manager): void
     {
         // 1. Rangs
@@ -38,23 +40,6 @@ class AppFixtures extends Fixture
             $rank->setHierachie($data['hierarchie']);
             $manager->persist($rank);
         }
-
-        // 2. Membres test
-        $testMember = new Membres();
-        $testMember->setPseudo("Grabibi");
-        $testMember->setNom("Grabriel");
-        $testMember->setJoinDate(new \DateTime());
-        $testMember->setRankId(1); // à améliorer si Rank devient une relation
-        $testMember->setIsActif(true);
-        $manager->persist($testMember);
-
-        $testMember2 = new Membres();
-        $testMember2->setPseudo("Cuiler");
-        $testMember2->setNom("Alex");
-        $testMember2->setJoinDate(new \DateTime());
-        $testMember2->setRankId(5); // à améliorer si Rank devient une relation
-        $testMember2->setIsActif(true);
-        $manager->persist($testMember2);
 
         $sizeSmall = new Size();
         $sizeSmall->setLibelle("Small");

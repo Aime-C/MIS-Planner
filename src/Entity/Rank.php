@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RankRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RankRepository::class)]
@@ -19,6 +21,19 @@ class Rank
 
     #[ORM\Column]
     private ?int $hierachie = null;
+
+
+    /**
+     * @var Collection<int, Membres>
+     */
+    #[ORM\OneToMany(targetEntity: Membres::class, mappedBy: 'rank')]
+    private Collection $membres;
+
+    public function __construct()
+    {
+        $this->membres = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {

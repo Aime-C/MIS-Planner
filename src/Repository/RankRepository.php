@@ -31,15 +31,25 @@ class RankRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-        public function findOneById($value): ?Rank
-        {
-            return $this->createQueryBuilder('r')
-                ->andWhere('r.id = :val')
-                ->setParameter('val', $value)
-                ->getQuery()
-                ->getOneOrNullResult()
+    public function findOneById($value): ?Rank
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    public function findOneByHierarchie($value): ?Rank
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.hierachie = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
             ;
-        }
+    }
 
     public function getAll(): array
     {

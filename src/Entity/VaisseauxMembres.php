@@ -13,11 +13,14 @@ class VaisseauxMembres
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $vaisseau_id = null;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Vaisseaux $vaisseau = null;
 
-    #[ORM\Column]
-    private ?int $membre_id = null;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Membres $membre = null;
+
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nom = null;
@@ -34,28 +37,24 @@ class VaisseauxMembres
         return $this;
     }
 
-    public function getVaisseauId(): ?int
+    public function getVaisseau(): ?Vaisseaux
     {
-        return $this->vaisseau_id;
+        return $this->vaisseau;
     }
 
-    public function setVaisseauId(int $vaisseau_id): static
+    public function setVaisseau(?Vaisseaux $vaisseau): void
     {
-        $this->vaisseau_id = $vaisseau_id;
-
-        return $this;
+        $this->vaisseau = $vaisseau;
     }
 
-    public function getMembreId(): ?int
+    public function getMembre(): ?Membres
     {
-        return $this->membre_id;
+        return $this->membre;
     }
 
-    public function setMembreId(int $membre_id): static
+    public function setMembre(?Membres $membre): void
     {
-        $this->membre_id = $membre_id;
-
-        return $this;
+        $this->membre = $membre;
     }
 
     public function getNom(): ?string

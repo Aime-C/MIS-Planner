@@ -6,6 +6,7 @@ use App\Entity\Membres;
 use App\Entity\Rank;
 use App\Repository\MembresRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -39,18 +40,12 @@ class MembreTypeForm extends AbstractType
                     'placeholder' => 'Sélectionnez un membre',
                 ]);
         } else {
-            $ranks = $this->em->getRepository(Rank::class)->findAll();
-
-            $choices = [];
-            foreach ($ranks as $rank) {
-                $choices[$rank->getLibelle()] = $rank->getHierachie();
-            }
-
             $builder
                 ->add('pseudo', TextType::class)
                 ->add('nom', TextType::class)
-                ->add('rank_id', ChoiceType::class, [
-                    'choices' => $choices,
+                ->add('rank', EntityType::class, [
+                    'class' => Rank::class,
+                    'choice_label' => 'libelle',
                     'label' => 'Rang',
                     'placeholder' => 'Sélectionnez un rang',
                 ])

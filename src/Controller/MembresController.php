@@ -15,18 +15,13 @@ use Symfony\Component\Routing\Attribute\Route;
 final class MembresController extends AbstractController
 {
     #[Route('/membres', name: 'app_membres')]
-    public function index(MembresRepository $membresRepository, RankRepository $rankRepository): Response
+    public function index(MembresRepository $membresRepository): Response
     {
         $membres = $membresRepository->getAllActif();
-        $ranks = [];
-        foreach ($membres as $membre) {
-            $ranks = $rankRepository->getAll();
-        }
 
         return $this->render('membres/index.html.twig', [
             'controller_name' => 'MembresController',
             'membres' => $membres,
-            'ranks' => $ranks,
         ]);
     }
     #[Route('/membre/add', name: 'app_membre_add')]

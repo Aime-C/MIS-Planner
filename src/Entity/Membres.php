@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MembresRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MembresRepository::class)]
@@ -19,8 +20,9 @@ class Membres
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column]
-    private ?int $rank_id = null;
+    #[ORM\ManyToOne(inversedBy: 'membres')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Rank $rank = null;
 
     #[ORM\Column]
     private ?\DateTime $joinDate = null;
@@ -64,16 +66,14 @@ class Membres
         return $this;
     }
 
-    public function getRankId(): ?int
+    public function getRank(): ?Rank
     {
-        return $this->rank_id;
+        return $this->rank;
     }
 
-    public function setRankId(int $rank_id): static
+    public function setRank(?Rank $rank): void
     {
-        $this->rank_id = $rank_id;
-
-        return $this;
+        $this->rank = $rank;
     }
 
     public function getJoinDate(): ?\DateTime
@@ -97,5 +97,35 @@ class Membres
     public function setIsActif(?int $isActif): void
     {
         $this->isActif = $isActif;
+    }
+
+    /**
+     * @return Collection<int, Membres>
+     */
+    public function getMembres(): Collection
+    {
+        return $this->membres;
+    }
+
+    public function addMembres(Membres $membres): static
+    {
+        if (!$this->membres->contains($membres)) {
+            $this->membres->add($membres);
+            $membres->setRankId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMembres(Membres $membres): static
+    {
+        if ($this->membres->removeElement($membres)) {
+            // set the owning side to null (unless already changed)
+            if ($membres->getRankId() === $this) {
+                $membres->setRankId(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -21,51 +21,13 @@ use Symfony\Component\Routing\Attribute\Route;
 final class FlotteController extends AbstractController
 {
     #[Route('/flotte', name: 'app_flotte')]
-    public function index(VaisseauxMembresRepository $vaisseauxMembresRepository,
-                          MembresRepository $membresRepository,
-                          VaisseauxRepository $vaisseauxRepository): Response
+    public function index(VaisseauxMembresRepository $vaisseauxMembresRepository): Response
     {
         $vaisseauxMembres = $vaisseauxMembresRepository->findAll();
-        $membres = $membresRepository->findAll();
-        $vaisseaux = $vaisseauxRepository->findAll();
-
-        $mapped = [];
-
-        foreach ($vaisseauxMembres as $vm) {
-            $membre = null;
-            $vaisseau = null;
-            $marqueVaisseau = null;
-
-            // Trouver le membre correspondant
-            foreach ($membres as $m) {
-                if($m->getIsActif() == 1){
-                    if ($m->getId() === $vm->getMembreId()) {
-                        $membre = $m;
-                        break;
-                    }
-                }
-            }
-
-            // Trouver le vaisseau correspondant
-            foreach ($vaisseaux as $v) {
-                if ($v->getId() === $vm->getVaisseauId()) {
-                    $vaisseau = $v;
-                    break;
-                }
-            }
-
-            if ($membre && $vaisseau) {
-                $mapped[] = [
-                    'membre' => $membre,
-                    'vaisseau' => $vaisseau,
-                    'id' => $vm->getId()
-                ];
-            }
-        }
 
         return $this->render('flotte/index.html.twig', [
             'controller_name' => 'FlotteController',
-            'assignations' => $mapped,
+            'assignations' => $vaisseauxMembres,
         ]);
 
     }
