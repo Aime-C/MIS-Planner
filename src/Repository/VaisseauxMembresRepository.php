@@ -48,4 +48,14 @@ class VaisseauxMembresRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getAllActiveMembers(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.id', 'ASC') // Tri optionnel
+            ->join('m.membre', 'u')
+            ->where('u.isActif = 1')
+            ->getQuery()
+            ->getResult();
+    }
 }

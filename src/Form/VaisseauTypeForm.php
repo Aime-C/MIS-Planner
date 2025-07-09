@@ -37,7 +37,6 @@ class VaisseauTypeForm extends AbstractType
                 'label' => 'Taille',
                 'choice_label' => 'libelle',
                 'placeholder' => 'Sélectionnez une taille',
-
             ])
 
             ->add('marque',EntityType::class, [

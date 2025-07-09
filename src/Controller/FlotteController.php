@@ -23,7 +23,7 @@ final class FlotteController extends AbstractController
     #[Route('/flotte', name: 'app_flotte')]
     public function index(VaisseauxMembresRepository $vaisseauxMembresRepository): Response
     {
-        $vaisseauxMembres = $vaisseauxMembresRepository->findAll();
+        $vaisseauxMembres = $vaisseauxMembresRepository->getAllActiveMembers();
 
         return $this->render('flotte/index.html.twig', [
             'controller_name' => 'FlotteController',
