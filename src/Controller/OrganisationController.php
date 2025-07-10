@@ -10,6 +10,7 @@ use App\Repository\MarquesRepository;
 use App\Repository\SizeRepository;
 use App\Repository\TypeRepository;
 use App\Repository\VaisseauxRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -101,12 +102,37 @@ final class OrganisationController extends AbstractController
     }
 
     #[Route('/organisation/attente', name: 'app_organisationAttente')]
-    public function organisationComptesAttente(): Response
+    public function organisationComptesAttente(EntityManagerInterface $em, UserRepository $userRepository): Response
     {
+        $users = $userRepository->getAllAttente();
 
         return $this->render('organisation/attente/index.html.twig', [
             'controller_name' => 'OrganisationDonnees',
+            'users' => $users,
 
         ]);
+    }
+
+    #[Route('/organisation/attente/valid/{id}', name: 'app_organisationAttenteValid')]
+    public function organisationComptesAttenteValid(EntityManagerInterface $em, UserRepository $userRepository, int $id): Response
+    {
+        $user = $userRepository->getOneById($id);
+        $user->setIsValid(1);
+        $user->setRoles(['ROLE_USER']);
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('app_organisationAttente');
+    }
+
+    #[Route('/organisation/attente/refuse/{id}', name: 'app_organisationAttenteValid')]
+    public function organisationComptesAttenteRefuse(EntityManagerInterface $em, UserRepository $userRepository, int $id): Response
+    {
+        $user = $userRepository->getOneById($id);
+        $em->remove($user);
+        $em->flush();
+
+
+        return $this->redirectToRoute('app_organisationAttente');
     }
 }

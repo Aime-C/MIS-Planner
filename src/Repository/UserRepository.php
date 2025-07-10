@@ -33,6 +33,36 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
+    public function getAll(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->select('partial u.{id, pseudo, email, roles, isValid}') // On sélectionne uniquement certains champs
+            ->orderBy('u.id', 'ASC') // Tri optionnel
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getOneById($id): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->select('partial u.{id, pseudo, email, roles, isValid}') // On sélectionne uniquement certains champs
+            ->orderBy('u.id', 'ASC') // Tri optionnel
+            ->where('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function getAllAttente(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->select('partial u.{id, pseudo, email, roles, isValid}') // On sélectionne uniquement certains champs
+            ->where('u.isValid = 0')
+            ->orderBy('u.id', 'ASC') // Tri optionnel
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return UserFixtures[] Returns an array of UserFixtures objects
     //     */

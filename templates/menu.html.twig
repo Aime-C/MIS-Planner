@@ -8,6 +8,9 @@
                         <a href="{{ path('app_home') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Accueil</a>
                         <a href="{{ path('app_membres') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Membres</a>
                         <a href="{{ path('app_flotte') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Flotte</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_organisation') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Organisation</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
