@@ -7,12 +7,25 @@
     <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     {% block javascripts %}{% endblock %}
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        <style>
+            body {
+                background-image:
+                        linear-gradient(to right, rgba(0, 0, 0, 50%) 20%, rgba(0, 0, 0, 50%) 100%),
+                        url("https://media.starcitizen.tools/thumb/c/cc/Pyro_Gateway%2C_Stanton_System.jpg/1920px-Pyro_Gateway%2C_Stanton_System.jpg.webp");
+                background-size: cover;
+                background-repeat: no-repeat, repeat;
+                background-attachment: fixed;
+                overflow: hidden;
+                width: 100vw;
+                height: 100vh;
+            }
+        </style>{% endblock %}
 </head>
 <body>
 {% block body %}
     <div class="min-h-screen flex items-start justify-center pt-20">
-        <div class="w-full max-w-md shadow-lg rounded-xl p-8" style="background-color: #242970;">
+        <div class="w-full max-w-md shadow-lg rounded-xl p-8" style="background-color: rgba(0, 12, 45, 60%);">
             <h1 class="text-2xl font-bold mb-6 text-center text-white">Créer votre compte</h1>
 
             {{ form_start(form) }}
@@ -41,7 +54,7 @@
 
             <div class="mt-6 text-center">
                 <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-md transition duration-200">
-                    Ajouter
+                    Créer
                 </button>
             </div>
             {{ form_end(form) }}

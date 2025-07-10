@@ -135,4 +135,16 @@ final class OrganisationController extends AbstractController
 
         return $this->redirectToRoute('app_organisationAttente');
     }
+
+    #[Route('/organisation/utilisateurs', name: 'app_organisationUtilisateurs')]
+    public function organisationUtilisateurs(EntityManagerInterface $em, UserRepository $userRepository): Response
+    {
+        $users = $userRepository->getAll();
+
+        return $this->render('organisation/utilisateurs/index.html.twig', [
+            'controller_name' => 'OrganisationDonnees',
+            'users' => $users,
+
+        ]);
+    }
 }

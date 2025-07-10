@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+    {% block stylesheets %}
+        <style>
+            body {
+                background-image:
+                        linear-gradient(to right, rgba(0, 0, 0, 50%) 20%, rgba(0, 0, 0, 50%) 100%),
+                        url("https://media.starcitizen.tools/a/ae/Ship-Idris-Crew.jpg");
+                background-size: cover;
+                background-repeat: no-repeat, repeat;
+                width: 100vw;
+                height: 100vh;
+            }
+        </style>
+    {% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <h1 class="text-3xl font-bold text-white text-center mb-6 mt-10">Utilisateurs</h1>
+    <div class="flex items-center justify-center mt-5">
+        <div class="overflow-x-auto rounded-lg shadow-lg">
+            <table class="w-[90vw] min-w-full border border-gray-600 text-white" style="">
+                <thead style="background-color: rgba(4, 2, 37, 65%);">
+                <tr class="text-left border-b border-gray-600">
+                    <th class="px-6 py-3 border-r border-gray-600">Pseudo</th>
+                    <th class="px-6 py-3 border-r border-gray-600">Email</th>
+                    <th class="px-6 py-3 border-r border-gray-600">Rôles</th>
+                    <th class="px-6 py-3">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr class="border-b border-gray-600" style="background-color: rgba(0, 12, 45, 50%);">
+                        <td class="px-6 py-4 border-r border-gray-600">{{ user.pseudo|e }}</td>
+                        <td class="px-6 py-4 border-r border-gray-600">{{ user.email|e }}</td>
+                        <td class="px-6 py-4 border-r border-gray-600">
+                            {{ user.roles[0]|e }}
+                        </td>
+                        <td class="px-6 py-4 border-r border-gray-600">
+{#                            <div class="flex gap-2 flex-wrap">#}
+{#                                <a href="attente/refuse/{{ user.id|e }}" data-idmembre="{{ user.id|e }}"#}
+{#                                   class="idbtndeletemembre py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">#}
+{#                                    Refuser#}
+{#                                </a>#}
+{#                                <a href="attente/valid/{{ user.id|e }}"#}
+{#                                   class="py-2 px-3 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700">#}
+{#                                    Accepter#}
+{#                                </a>#}
+{#                            </div>#}
+                            <input id="idUserHidden" value="{{ user.id|e }}" type="hidden">
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="confirmModalExpulsion" class="fixed inset-0 flex items-center justify-center bg-black/30 z-50 hidden">
+        <div class="bg-white rounded-lg p-6 shadow-xl max-w-md w-full">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Confirmer l'expulsion</h2>
+            <p class="mb-6 text-gray-600">Voulez-vous vraiment expulser ce membre ?</p>
+            <p class="mb-6 text-gray-600">Ses vaisseaux seront effacés automatiquement de la flotte</p>
+            <div class="flex justify-between space-x-4">
+                <button id="confirmYes" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Oui</button>
+                <button id="confirmNo" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Non</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="idNewMemberChoice" class="fixed inset-0 flex items-center justify-center bg-black/30 z-50 hidden">
+        <div class="bg-white rounded-lg p-6 shadow-xl max-w-md w-full">
+            <div class="flex justify-between space-x-4">
+                <button id="idNewMemberButton" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Nouveau Membre</button>
+                <button id="idReintegrerMembreButton" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Réintégrer un membre</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
