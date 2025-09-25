@@ -42,6 +42,7 @@
                     <th class="px-6 py-3 border-r border-gray-600">Nom</th>
                     <th class="px-6 py-3 border-r border-gray-600">Date d'arrivé</th>
                     <th class="px-6 py-3 border-r border-gray-600">Rang</th>
+                    <th class="px-6 py-3 border-r border-gray-600">Rôles</th>
 {#                    <th class="px-6 py-3 border-r border-gray-600">Actif</th>#}
                     {% if is_granted('ROLE_ADMIN') %}
                     <th class="px-6 py-3">Action</th>
@@ -55,6 +56,13 @@
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.nom|e }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.joinDate|date("d/m/Y") }}</td>
                     <td class="px-6 py-4 border-r border-gray-600">{{ membre.rank.libelle|e }}</td>
+                    <td class="px-6 py-4 border-r border-gray-600">
+                        {% for role in membre.roles %}
+                            <span class="text-white text-sm font-semibold px-2 py-1 rounded mr-1 inline-block"
+                                  style="background-color: {{ role.color }};">{{ role.libelle }}
+                            </span>
+                        {% endfor %}
+                    </td>
                     {% if is_granted('ROLE_ADMIN') %}
                     <td class="px-6 py-4 border-r border-gray-600">
                         <div class="flex gap-2 flex-wrap">

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Membres;
 use App\Entity\Rank;
+use App\Entity\Role;
 use App\Repository\MembresRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -48,6 +49,19 @@ class MembreTypeForm extends AbstractType
                     'choice_label' => 'libelle',
                     'label' => 'Rang',
                     'placeholder' => 'Sélectionnez un rang',
+                ])
+                ->add('rank', EntityType::class, [
+                    'class' => Rank::class,
+                    'choice_label' => 'libelle',
+                    'label' => 'Rang',
+                    'placeholder' => 'Sélectionnez un rang',
+                ])
+                ->add('roles', EntityType::class, [
+                    'class' => Role::class,
+                    'choice_label' => 'libelle',
+                    'multiple' => true,
+                    'expanded' => true,
+                    'by_reference' => false, // important pour les collections
                 ])
                 ->add('joinDate');
         }

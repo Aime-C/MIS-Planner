@@ -43,9 +43,10 @@ final class MembresController extends AbstractController
 
             return $this->redirectToRoute('app_membres');
         }
-
+        $action = 'add';
         return $this->render('membres/add.html.twig', [
             'form' => $form->createView(),
+            'action' => $action,
         ]);
     }
 
@@ -89,9 +90,11 @@ final class MembresController extends AbstractController
 
             return $this->redirectToRoute('app_membres');
         }
+        $action = 'edit';
 
         return $this->render('membres/add.html.twig', [
             'form' => $form->createView(),
+            'action' => $action,
         ]);
     }
 
