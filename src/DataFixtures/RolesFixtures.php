@@ -27,6 +27,8 @@ class RolesFixtures extends Fixture
             ['libelle' => 'Chef Ingénieur', 'color' => '#1f1918', 'chef' => 1],
             ['libelle' => 'Médic', 'color' => '#ed1d0e', 'chef' => 0],
             ['libelle' => 'Chef Médic', 'color' => '#ed1d0e', 'chef' => 1],
+            ['libelle' => 'Logistique', 'color' => '#f5a207', 'chef' => 0],
+            ['libelle' => 'Chef Logistique', 'color' => '#f5a207', 'chef' => 1],
 
         ];
         foreach ($roles as $data) {

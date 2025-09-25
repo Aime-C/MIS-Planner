@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Missions{% endblock %}
+
+    {% block stylesheets %}
+        <style>
+            body {
+                background-image:
+                        linear-gradient(to right, rgba(0, 0, 0, 50%) 20%, rgba(0, 0, 0, 50%) 100%),
+                        url("https://preview.redd.it/aegis-idris-briefing-room-update-v0-fl0kxcribq0f1.png?width=1080&crop=smart&auto=webp&s=f81b9c008811afd46368e7c15c9c6a27353013de");
+                background-size: cover;
+                background-repeat: no-repeat, repeat;
+                width: 100vw;
+                height: 100vh;
+            }
+        </style>
+    {% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-bold text-white text-center mb-6 mt-10">Les missions filmées par nos experts</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 m-10">
+        <div class="max-w-full bg-gray-900 border border-blue-900 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+            <div class="relative w-full pt-[56.25%]"> <!-- 16:9 aspect ratio -->
+                <iframe
+                        class="absolute top-0 left-0 w-full h-full rounded-t-lg"
+                        src="https://www.youtube.com/embed/videoseries?si=pI63eU6cO8F06QXq&amp;list=PLKSUUzRa6H-d8dpnz5jsyxUWTdO4j-EWx"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="p-5">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                    Toutes les vidéos (LIVE)
+                </h5>
+            </div>
+        </div>
+
+        <div class="max-w-full bg-gray-900 border border-blue-900 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+            <div class="relative w-full pt-[56.25%]"> <!-- 16:9 aspect ratio -->
+                <iframe
+                        class="absolute top-0 left-0 w-full h-full rounded-t-lg"
+                        src="https://www.youtube.com/embed/videoseries?si=6Bjo1n6Zht8ykSRH&amp;list=PLKSUUzRa6H-e85Vu9Zc9JCPQW2VVwhAuN"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="p-5">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                    Well
+                </h5>
+            </div>
+        </div>
+
+        <div class="max-w-full bg-gray-900 border border-blue-900 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+            <div class="relative w-full pt-[56.25%]"> <!-- 16:9 aspect ratio -->
+                <iframe
+                        class="absolute top-0 left-0 w-full h-full rounded-t-lg"
+                        src="https://www.youtube.com/embed/videoseries?si=PBp0TmExmLZDIwGf&amp;list=PLKSUUzRa6H-c85lyGSl3p_RGcwV8vTbH0"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="p-5">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                    Cui'er
+                </h5>
+            </div>
+        </div>
+
+        <div class="max-w-full bg-gray-900 border border-blue-900 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+            <div class="relative w-full pt-[56.25%]"> <!-- 16:9 aspect ratio -->
+                <iframe
+                        class="absolute top-0 left-0 w-full h-full rounded-t-lg"
+                        src="https://www.youtube.com/embed/videoseries?si=jsAIoxwZYKs5aO7h&amp;list=PLKSUUzRa6H-e1uOAHZrP4Pm5DY6f0QBIf"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="p-5">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                    Dodo
+                </h5>
+            </div>
+        </div>
+
+        <div class="max-w-full bg-gray-900 border border-blue-900 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+            <div class="relative w-full pt-[56.25%]"> <!-- 16:9 aspect ratio -->
+                <iframe
+                        class="absolute top-0 left-0 w-full h-full rounded-t-lg"
+                        src="https://www.youtube.com/embed/videoseries?si=wV1woTxR0X4K0Rzp&amp;list=PLKSUUzRa6H-e5m09_J3--JxiM3bPWMQS6"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="p-5">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                    PTU / TECHPreview
+                </h5>
+            </div>
+        </div>
+    </div>
+{% endblock %}
