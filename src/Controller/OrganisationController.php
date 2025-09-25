@@ -125,7 +125,7 @@ final class OrganisationController extends AbstractController
         return $this->redirectToRoute('app_organisationAttente');
     }
 
-    #[Route('/organisation/attente/refuse/{id}', name: 'app_organisationAttenteValid')]
+    #[Route('/organisation/attente/refuse/{id}', name: 'app_organisationAttenteRefuse')]
     public function organisationComptesAttenteRefuse(EntityManagerInterface $em, UserRepository $userRepository, int $id): Response
     {
         $user = $userRepository->getOneById($id);
