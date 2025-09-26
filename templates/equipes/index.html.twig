@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipes{% endblock %}
+
+{% block body %}
+    <div class="relative mb-6 mt-4">
+        <h4 class="text-3xl font-bold text-white text-center">Équipes</h4>
+        <a href="equipes/add" class="ml-2 absolute left-0 top-1/2 -translate-y-1/2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+            Ajouter une équipe
+        </a>
+    </div>
+    <div class="flex h-screen text-white">
+        <div class="w-1/4 bg-cover bg-center p-2 overflow-y-auto">
+            <div class="bg-black bg-opacity-50 h-full p-4 rounded-lg space-y-4" style='
+            background:
+            linear-gradient(to right, rgba(0, 0, 0, 50%) 20%, rgba(0, 0, 0, 50%) 100%),
+            url("https://robertsspaceindustries.com/i/7ec4bde8f5512f467277ce9e7bd9353f8e967126/resize(1820,1024,cover,ADdPNihJzmPbNuTnFsH1DqUeqBRpXdSXVVtgJTyDDgscGKrzJuoFjResiuSraPRTmjNxmMtzMXA1y6yCZwjcXT8vS)/source.webp");
+            background-position-x: -500px;'>
+                <h4 class="text-3xl font-bold text-white text-center mb-6 mt-4">Ingénieurie</h4>
+                {% for equipe in equipesIngenieurs %}
+                <div class="bg-gray-900 bg-opacity-10 p-4 rounded-lg shadow-lg flex justify-between items-center">
+                    <div class="flex flex-col">
+                        <h4 class="text-2xl font-bold text-white mb-1">{{ equipe.nom }}</h4>
+                        {% for membre in equipe.membres %}
+                            <h3 class="text-lg font-semibold text-white">{{ membre.pseudo }}</h3>
+                        {% endfor %}
+                    </div>
+                    <div class="flex flex-col">
+                        <a href="equipes/del/{{ equipe.id }}" class="text-red-400 hover:text-red-600 text-xl" title="Supprimer">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                        <a href="equipes/edit/{{ equipe.id }}" class="text-gray-300 hover:text-gray-100 text-xl" title="Paramètres">
+                            <i class="fa-solid fa-gear"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+{#        <div class="w-1/4 bg-cover bg-center p-2 overflow-y-auto">#}
+{#            <div class="bg-black bg-opacity-50 h-full p-4 rounded-lg space-y-4">#}
+{#                <h4 class="text-3xl font-bold text-white text-center mb-6 mt-4">Médical</h4>#}
+
+{#            </div>#}
+{#        </div>#}
+
+{#        <div class="w-1/4 bg-cover bg-center p-2 overflow-y-auto">#}
+{#            <div class="bg-black bg-opacity-50 h-full p-4 rounded-lg space-y-4">#}
+{#                <h4 class="text-3xl font-bold text-white text-center mb-6 mt-4">Artillerie</h4>#}
+
+{#            </div>#}
+{#        </div>#}
+
+{#        <div class="w-1/4 bg-cover bg-center p-2 overflow-y-auto">#}
+{#            <div class="bg-black bg-opacity-50 h-full p-4 rounded-lg space-y-4">#}
+{#                <h4 class="text-3xl font-bold text-white text-center mb-6 mt-4">Equipage</h4>#}
+
+{#            </div>#}
+{#        </div>#}
+    </div>
+{% endblock %}

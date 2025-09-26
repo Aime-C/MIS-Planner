@@ -37,9 +37,16 @@ class Membres
     #[ORM\ManyToMany(targetEntity: Role::class, mappedBy: 'membres')]
     private Collection $roles;
 
+    /**
+     * @var Collection<int, Equipe>
+     */
+    #[ORM\ManyToMany(targetEntity: Equipe::class, mappedBy: 'membres')]
+    private Collection $equipes;
+
     public function __construct()
     {
         $this->roles = new ArrayCollection();
+        $this->equipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +170,33 @@ class Membres
     {
         if ($this->roles->removeElement($role)) {
             $role->removeMembre($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Equipe>
+     */
+    public function getEquipes(): Collection
+    {
+        return $this->equipes;
+    }
+
+    public function addEquipe(Equipe $equipe): static
+    {
+        if (!$this->equipes->contains($equipe)) {
+            $this->equipes->add($equipe);
+            $equipe->addMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipe(Equipe $equipe): static
+    {
+        if ($this->equipes->removeElement($equipe)) {
+            $equipe->removeMembre($this);
         }
 
         return $this;
